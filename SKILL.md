@@ -7,7 +7,7 @@ description: "面向真武 PPU（M890、810E 等）的通用算子开发与优�
 
 ## 目标
 
-把算子任务推进到可验证、可复现、可回滚的结果：
+把算子开发或优化的任务推进到可验证、可复现、可回滚的工程化结果：
 
 ```text
 任务约束
@@ -17,7 +17,7 @@ description: "面向真武 PPU（M890、810E 等）的通用算子开发与优�
 → 实现/适配
 → 编译
 → 正确性
-→ Asight 性能分析
+→ Asight 工具链性能分析
 → 单假设优化迭代
 → 性能晋升或回滚
 ```
@@ -153,7 +153,7 @@ Baseline 至少记录：
 
 1. 官方库已有精确实现：直接复用。
 2. 官方库有相邻实现或可复用 primitive：适配、组合或移植。
-3. 官方示例覆盖所需硬件能力：以示例为骨架实现。
+3. 官方示例覆盖所需硬件能力：以示例为骨架进行实现。
 4. HGGC/TIX 可表达：编写定制 kernel。
 5. Triton/TileLang 可表达且性能足够：优先保持可维护性。
 6. 只有控制面或性能上限确实受阻时，再下沉到更低层 TIX。
@@ -202,13 +202,13 @@ Baseline 至少记录：
 
 对索引、MoE、Atomic、collective 或并发任务，把“结果正确”和“输出确定性”分成两个 gate。
 
-## 第七步：Asight 性能分析
+## 第七步：Asight 工具链性能分析
 
-先用系统级工具定位，再进入 kernel 级计数。
+### 系统级性能分析
 
-### Asight Systems 与 asys
+如果需要进行系统级性能分析，使用 Asight Systems（asys）工具；如果需要进行算子级性能分析，直接使用 Asight Compute（acu）工具。
 
-采集时优先限制范围：
+使用 asys 工具采集时优先限制范围：
 
 ```bash
 asys profile -t hggc --delay <预热秒数> --duration <采集秒数> \
@@ -235,10 +235,10 @@ asys aggregate <report1> <report2> <report3>
 - VREG、stack/local memory 和 spill；
 - 通信不同步、最晚启动 Rank 和 group 差异。
 
-### 核函数级分析
+### 核函数（kernel）级性能分析
 
-- 使用 Asight Compute 或项目已有 counter 采集器分析单 kernel。
-- 性能分析优先使用 `-lineinfo`；不要把 `-G` 版本当作发布性能。
+- 优先使用官方的 acu 工具采集并分析具体 kernel 性能。
+- 优先使用 acu-report-skill 这个 skill 进行 kernel 性能分析（如果已安装这个 skill）。
 - 将指标映射到瓶颈类别：compute-bound、memory-bound、latency-bound、register/occupancy-bound、communication/synchronization-bound。
 - 如果当前工具无法证明瓶颈，先补采集和基线，不要凭经验连续改 tile。
 
@@ -262,7 +262,7 @@ asys aggregate <report1> <report2> <report3>
 4. 指令：Tensor Cell、native math、宽读写、原子和控制流。
 5. 通信：collective 选择、拓扑、group、同步和计算通信重叠。
 
-### 真武专有手段
+### 真武架构专用
 
 - AIU 与异步张量搬运：适合连续多维块和 global 到 TSM 的搬运；gather 或非连续 M/N 方向需确认对齐限制。
 - warp interleaving：当一个 warp 在 promotion、同步或依赖中停顿时，让另一 warp 填满 Tensor Cell 空档。
@@ -271,9 +271,9 @@ asys aggregate <report1> <report2> <report3>
 - 快慢路径分流：根据真实工作负载分档，而不是为单个异常热点污染默认路径。
 - 集合通信：先复用 PCCL；用 `pccl-tests` 验证，再分析通信组对齐、Rank 差异和计算通信重叠。
 
-## 第九步：晋升与交付
+## 第九步：晋升方案与交付
 
-候选晋升必须满足：
+候选的算子开发或优化的晋升方案必须满足：
 
 - 目标架构执行通过；
 - 正确性和边界测试通过；
