@@ -1,0 +1,3 @@
+interface:
+  display_name: "真武 PPU 算子优化器"
+  short_description: "基于官方代码、文档和 Asight 实测优化真武算子"

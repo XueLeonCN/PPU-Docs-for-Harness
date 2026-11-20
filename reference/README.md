@@ -10,7 +10,10 @@ reference/
 ├── architecture/
 ├── programming-guide/
 ├── blog/
-└── assets/
+├── assets/
+└── skills/
+    └── zhenwu-ppu-operator-optimizer/
+        └── SKILL.md
 ```
 
 - `catalog.md`：按主题组织的详细摘要、关键内容和适用问题。
@@ -19,6 +22,7 @@ reference/
 - `programming-guide/`：官方 HGGC/TIX 编程与优化指南。
 - `blog/`：官方技术博客。
 - `assets/`：博客内嵌图表的本地副本。
+- `skills/zhenwu-ppu-operator-optimizer/`：面向通用业务场景的真武算子开发与优化工作流。
 
 ## 来源约定
 

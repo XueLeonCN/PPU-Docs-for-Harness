@@ -143,9 +143,9 @@ TIX 是位于高级语言和物理 ISA 之间的 PPU 虚拟指令集，可通过
 
 **检索标签**：`kernel-optimization`、`occupancy`、`TLP`、`ILP`、`launch-bounds`、`coalesced-access`、`bank-conflict`、`group-conflict`、`cache-policy`、`AIU`、`tensor-core`、`register-spill`、`Asight`。
 
-## 2. GEMM、Attention、MoE 与量化
+## 2. 算子实现与优化实践参考
 
-具体算子的分析与优化相关博客。
+算子实现与优化相关博客。
 
 ### [真武 M890 上 FP8 blockwise GEMM 的实现与优化](blog/2026-11-16-fp8-blockwise-gemm.md)
 
@@ -387,7 +387,7 @@ TIX 是位于高级语言和物理 ISA 之间的 PPU 虚拟指令集，可通过
 
 **检索标签**：`Triton`、`PPU`、`tl.aiu_load`、`block-pointer`、`tensor-descriptor`、`tiling`、`GEMM`、`Flash-Attention`、`FusedMoE`、`AIU`。
 
-## 3. 编译与构建
+## 3. 编译与构建实践参考
 
 编译优化相关技术博客。
 
