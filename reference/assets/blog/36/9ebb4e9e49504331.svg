@@ -1,0 +1,108 @@
+<svg aria-label="4PU to 4TSM group arbitration logic" height="720" role="img" style='font-family:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;' viewBox="0 0 1120 720" width="1120" xmlns="http://www.w3.org/2000/svg"><rect fill="#0b0f1a" height="100%" width="100%"></rect>
+<defs>
+<linearGradient id="arbGradEmbedded" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0" stop-color="#241a3a"></stop>
+<stop offset="0.5" stop-color="#33245a"></stop>
+<stop offset="1" stop-color="#241a3a"></stop>
+</linearGradient>
+<marker id="arbArrowGrantEmbedded" markerHeight="10" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="8" refY="3">
+<path d="M0,0 L8,3 L0,6 Z" fill="#22c55e"></path>
+</marker>
+<marker id="arbArrowRejectEmbedded" markerHeight="10" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="8" refY="3">
+<path d="M0,0 L8,3 L0,6 Z" fill="#ef4444"></path>
+</marker>
+<marker id="arbArrowNeutralEmbedded" markerHeight="10" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="8" refY="3">
+<path d="M0,0 L8,3 L0,6 Z" fill="#61708c"></path>
+</marker>
+<style>
+          .a-panel { fill: #101725; stroke: #2a3550; stroke-width: 1.2; }
+          .a-title { fill: #4da3ff; font-size: 12px; font-weight: 800; letter-spacing: .5px; }
+          .a-label { fill: #e8edf7; font-size: 14px; font-weight: 800; }
+          .a-muted { fill: #8a97b1; font-size: 12px; }
+          .a-tiny { fill: #8a97b1; font-size: 10px; }
+          .a-cell { fill: #e8edf7; font-size: 18px; font-weight: 900; text-anchor: middle; dominant-baseline: middle; }
+          .a-sub { fill: rgba(232, 237, 247, .72); font-size: 10px; text-anchor: middle; dominant-baseline: middle; }
+          .a-g0 { fill: #16294d; stroke: #3b82f6; stroke-width: 1.2; }
+          .a-g1 { fill: #123a22; stroke: #22c55e; stroke-width: 1.2; }
+          .a-g2 { fill: #5c3308; stroke: #f59e0b; stroke-width: 1.2; }
+          .a-g3 { fill: #5c1616; stroke: #ef4444; stroke-width: 1.2; }
+          .a-arb { fill: url(#arbGradEmbedded); stroke: #4b3a7a; stroke-width: 1.4; }
+          .a-grant { stroke: #22c55e; stroke-width: 2.4; fill: none; }
+          .a-reject { stroke: #ef4444; stroke-width: 2.2; fill: none; stroke-dasharray: 6 5; }
+          .a-neutral { stroke: #61708c; stroke-width: 1.7; fill: none; }
+          .a-grant-t { fill: #22c55e; font-size: 11px; font-weight: 800; text-anchor: middle; }
+          .a-reject-t { fill: #ef4444; font-size: 11px; font-weight: 800; text-anchor: middle; }
+          .a-group { font-size: 16px; font-weight: 900; text-anchor: middle; }
+        </style>
+</defs>
+<rect class="a-panel" height="680" rx="12" ry="12" width="1084" x="18" y="20"></rect>
+<text class="a-title" x="50" y="58">① PU request FIFO（tail → head）</text>
+<text class="a-title" text-anchor="middle" x="560" y="58">② arbitration：按 priority 选择 grant</text>
+<text class="a-title" x="50" y="600">③ TSM groups</text>
+<text class="a-label" text-anchor="end" x="88" y="132">tail</text>
+<text class="a-label" text-anchor="end" x="88" y="413">head</text>
+<path class="a-neutral" d="M100 142 L100 382" marker-end="url(#arbArrowNeutralEmbedded)"></path>
+<text class="a-tiny" text-anchor="middle" transform="rotate(-90 75 270)" x="75" y="270">request order</text>
+<rect class="a-panel" height="46" rx="10" ry="10" stroke="#3b82f6" width="150" x="150" y="82"></rect>
+<rect class="a-panel" height="46" rx="10" ry="10" stroke="#22c55e" width="150" x="370" y="82"></rect>
+<rect class="a-panel" height="46" rx="10" ry="10" stroke="#f59e0b" width="150" x="590" y="82"></rect>
+<rect class="a-panel" height="46" rx="10" ry="10" stroke="#ef4444" width="150" x="810" y="82"></rect>
+<text class="a-label" fill="#3b82f6" text-anchor="middle" x="225" y="110">PU0</text>
+<text class="a-label" fill="#22c55e" text-anchor="middle" x="445" y="110">PU1</text>
+<text class="a-label" fill="#f59e0b" text-anchor="middle" x="665" y="110">PU2</text>
+<text class="a-label" fill="#ef4444" text-anchor="middle" x="885" y="110">PU3</text>
+<rect class="a-g1" height="52" rx="9" ry="9" width="150" x="150" y="150"></rect>
+<rect class="a-g1" height="52" rx="9" ry="9" width="150" x="370" y="150"></rect>
+<rect class="a-g3" height="52" rx="9" ry="9" width="150" x="590" y="150"></rect>
+<rect class="a-g3" height="52" rx="9" ry="9" width="150" x="810" y="150"></rect>
+<text class="a-cell" x="225" y="176">G1</text><text class="a-cell" x="445" y="176">G1</text><text class="a-cell" x="665" y="176">G3</text><text class="a-cell" x="885" y="176">G3</text>
+<text class="a-sub" x="225" y="193">queued</text><text class="a-sub" x="445" y="193">queued</text><text class="a-sub" x="665" y="193">queued</text><text class="a-sub" x="885" y="193">queued</text>
+<rect class="a-g0" height="52" rx="9" ry="9" width="150" x="150" y="220"></rect>
+<rect class="a-g0" height="52" rx="9" ry="9" width="150" x="370" y="220"></rect>
+<rect class="a-g2" height="52" rx="9" ry="9" width="150" x="590" y="220"></rect>
+<rect class="a-g2" height="52" rx="9" ry="9" width="150" x="810" y="220"></rect>
+<text class="a-cell" x="225" y="246">G0</text><text class="a-cell" x="445" y="246">G0</text><text class="a-cell" x="665" y="246">G2</text><text class="a-cell" x="885" y="246">G2</text>
+<text class="a-sub" x="225" y="263">queued</text><text class="a-sub" x="445" y="263">queued</text><text class="a-sub" x="665" y="263">queued</text><text class="a-sub" x="885" y="263">queued</text>
+<rect class="a-g1" height="52" rx="9" ry="9" width="150" x="150" y="290"></rect>
+<rect class="a-g1" height="52" rx="9" ry="9" width="150" x="370" y="290"></rect>
+<rect class="a-g3" height="52" rx="9" ry="9" width="150" x="590" y="290"></rect>
+<rect class="a-g3" height="52" rx="9" ry="9" width="150" x="810" y="290"></rect>
+<text class="a-cell" x="225" y="316">G1</text><text class="a-cell" x="445" y="316">G1</text><text class="a-cell" x="665" y="316">G3</text><text class="a-cell" x="885" y="316">G3</text>
+<text class="a-sub" x="225" y="333">queued</text><text class="a-sub" x="445" y="333">queued</text><text class="a-sub" x="665" y="333">queued</text><text class="a-sub" x="885" y="333">queued</text>
+<rect class="a-g0" height="60" rx="9" ry="9" width="150" x="150" y="360"></rect>
+<rect class="a-g0" height="60" rx="9" ry="9" width="150" x="370" y="360"></rect>
+<rect class="a-g2" height="60" rx="9" ry="9" width="150" x="590" y="360"></rect>
+<rect class="a-g2" height="60" rx="9" ry="9" width="150" x="810" y="360"></rect>
+<text class="a-cell" x="225" y="387">G0</text><text class="a-cell" x="445" y="387">G0</text><text class="a-cell" x="665" y="387">G2</text><text class="a-cell" x="885" y="387">G2</text>
+<text class="a-sub" x="225" y="407">head request</text><text class="a-sub" x="445" y="407">head request</text><text class="a-sub" x="665" y="407">head request</text><text class="a-sub" x="885" y="407">head request</text>
+<path class="a-grant" d="M225 420 L225 454 L405 454 L405 482" marker-end="url(#arbArrowGrantEmbedded)"></path>
+<path class="a-reject" d="M445 420 L445 482" marker-end="url(#arbArrowRejectEmbedded)"></path>
+<path class="a-grant" d="M665 420 L665 482" marker-end="url(#arbArrowGrantEmbedded)"></path>
+<path class="a-reject" d="M885 420 L885 454 L715 454 L715 482" marker-end="url(#arbArrowRejectEmbedded)"></path>
+<text class="a-grant-t" x="315" y="445">PU0→G0 Grant</text>
+<text class="a-reject-t" x="445" y="448">PU1→G0 Reject</text>
+<text class="a-grant-t" x="665" y="448">PU2→G2 Grant</text>
+<text class="a-reject-t" x="800" y="445">PU3→G2 Reject</text>
+<rect class="a-arb" height="74" rx="14" ry="14" width="410" x="355" y="485"></rect>
+<text class="a-label" text-anchor="middle" x="560" y="514">TSM group arbitration</text>
+<text class="a-muted" text-anchor="middle" x="560" y="538">priority: PU0 → PU1 → PU2 → PU3</text>
+<text class="a-tiny" text-anchor="middle" x="560" y="554">同 group 同拍只 grant 一个 PU，其余 request 保留在队列 head，等待下一轮</text>
+<path class="a-grant" d="M470 559 L300 604" marker-end="url(#arbArrowGrantEmbedded)"></path>
+<path class="a-grant" d="M650 559 L620 604" marker-end="url(#arbArrowGrantEmbedded)"></path>
+<text class="a-grant-t" x="382" y="590">access G0</text>
+<text class="a-grant-t" x="636" y="590">access G2</text>
+<rect class="a-g0" height="64" rx="9" ry="9" width="170" x="170" y="610"></rect>
+<rect class="a-g1" height="64" opacity="0.48" rx="9" ry="9" width="170" x="380" y="610"></rect>
+<rect class="a-g2" height="64" rx="9" ry="9" width="170" x="590" y="610"></rect>
+<rect class="a-g3" height="64" opacity="0.48" rx="9" ry="9" width="170" x="800" y="610"></rect>
+<text class="a-group" fill="#3b82f6" x="255" y="636">group0</text>
+<text class="a-group" fill="#22c55e" x="465" y="636">group1</text>
+<text class="a-group" fill="#f59e0b" x="675" y="636">group2</text>
+<text class="a-group" fill="#ef4444" x="885" y="636">group3</text>
+<text class="a-sub" x="255" y="656">active · Grant</text>
+<text class="a-sub" x="465" y="656">idle · no request</text>
+<text class="a-sub" x="675" y="656">active · Grant</text>
+<text class="a-sub" x="885" y="656">idle · no request</text>
+<rect fill="#231a1f" height="28" rx="14" ry="14" stroke="#7a4d25" width="280" x="420" y="675"></rect>
+<text fill="#ffcc66" font-size="12" font-weight="800" text-anchor="middle" x="560" y="694">本 cycle：2 / 4 group active，带宽利用约 50%</text>
+</svg>

@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" role="img" aria-label="图6 byte_perm 装配：从加载结果到 MMA B fragment">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; fill: #1e293b; }
+      .t15 { font-size: 15px; font-weight: 700; }
+      .t10 { font-size: 10.5px; }
+      .t95 { font-size: 9.5px; }
+      .t85 { font-size: 8.5px; }
+      .t85b { font-size: 8.5px; font-weight: 700; }
+      .m85 { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 8.5px; }
+      .mut { fill: #64748b; }
+      .bl { fill: #1d4ed8; } .gr { fill: #15803d; } .or { fill: #c2410c; } .pu { fill: #7e22ce; }
+      .wh { fill: #ffffff; }
+    </style>
+    <pattern id="pA" x="64" y="104" width="13" height="11" patternUnits="userSpaceOnUse">
+      <path d="M0 0V11" stroke="#e2e8f0" stroke-width="0.6"/>
+      <path d="M0 0H13" stroke="#e2e8f0" stroke-width="0.6"/>
+    </pattern>
+    <pattern id="pB" x="64" y="316" width="13" height="11" patternUnits="userSpaceOnUse">
+      <path d="M0 0V11" stroke="#e2e8f0" stroke-width="0.6"/>
+      <path d="M0 0H13" stroke="#e2e8f0" stroke-width="0.6"/>
+    </pattern>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0L7 3.5L0 7z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="640" fill="#ffffff"/>
+  <text x="20" y="28" class="t15">图6 · byte_perm 装配：从加载结果到 MMA B fragment</text>
+  <text x="20" y="46" class="t95 mut">lane 0 · mk = 0 · np = 0 · h = 0（h=1 用 r2/r3 同理，略）；左 = V 加载结果（同图 5），右 = 2×2 块按列装配出新寄存器</text>
+
+  <!-- ===== 左区：V 加载结果（同图5，lane 0 的 r0-r3） ===== -->
+  <text x="20" y="70" class="t10" font-weight="600">① V 加载（同图 5）：lane 0 的 r0-r3（行 = kv，列 = headdim b8）</text>
+  <rect x="362" y="62" width="9" height="9" rx="2" fill="#3b82f6"/><text x="375" y="70" class="t85">r0</text>
+  <rect x="398" y="62" width="9" height="9" rx="2" fill="#22c55e"/><text x="411" y="70" class="t85">r1</text>
+  <rect x="434" y="62" width="9" height="9" rx="2" fill="#f97316"/><text x="447" y="70" class="t85">r2</text>
+  <rect x="470" y="62" width="9" height="9" rx="2" fill="#a855f7"/><text x="483" y="70" class="t85">r3</text>
+
+  <text x="64" y="86" class="t10" font-weight="600">加载 A · kv 0-15 → rA[0..3]</text>
+  <text x="70" y="96" text-anchor="middle" class="m85 mut">0</text>
+  <text x="175" y="96" text-anchor="middle" class="m85 mut">8</text>
+  <text x="279" y="96" text-anchor="middle" class="m85 mut">16</text>
+  <text x="383" y="96" text-anchor="middle" class="m85 mut">24</text>
+  <text x="473" y="96" text-anchor="middle" class="m85 mut">31</text>
+  <text x="58" y="113" text-anchor="end" class="t85b bl">0</text>
+  <text x="58" y="201" text-anchor="end" class="t85b bl">8</text>
+  <text x="58" y="278" text-anchor="end" class="t85 mut">15</text>
+  <rect x="64" y="104" width="416" height="176" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+  <rect x="64" y="104" width="416" height="176" fill="url(#pA)"/>
+  <!-- r0 蓝：kv{0,1} × hd{0,1} -->
+  <rect x="63" y="103" width="28" height="24" rx="3" fill="none" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="65" y="105" width="11" height="9" rx="2" fill="#3b82f6"/>
+  <rect x="78" y="105" width="11" height="9" rx="2" fill="#3b82f6"/>
+  <rect x="65" y="116" width="11" height="9" rx="2" fill="#3b82f6"/>
+  <rect x="78" y="116" width="11" height="9" rx="2" fill="#3b82f6"/>
+  <!-- r1 绿：kv{8,9} × hd{0,1} -->
+  <rect x="63" y="191" width="28" height="24" rx="3" fill="none" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="65" y="193" width="11" height="9" rx="2" fill="#22c55e"/>
+  <rect x="78" y="193" width="11" height="9" rx="2" fill="#22c55e"/>
+  <rect x="65" y="204" width="11" height="9" rx="2" fill="#22c55e"/>
+  <rect x="78" y="204" width="11" height="9" rx="2" fill="#22c55e"/>
+  <!-- r2 橙：kv{0,1} × hd{16,17} -->
+  <rect x="271" y="103" width="28" height="24" rx="3" fill="none" stroke="#f97316" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="273" y="105" width="11" height="9" rx="2" fill="#f97316"/>
+  <rect x="286" y="105" width="11" height="9" rx="2" fill="#f97316"/>
+  <rect x="273" y="116" width="11" height="9" rx="2" fill="#f97316"/>
+  <rect x="286" y="116" width="11" height="9" rx="2" fill="#f97316"/>
+  <!-- r3 紫：kv{8,9} × hd{16,17} -->
+  <rect x="271" y="191" width="28" height="24" rx="3" fill="none" stroke="#a855f7" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="273" y="193" width="11" height="9" rx="2" fill="#a855f7"/>
+  <rect x="286" y="193" width="11" height="9" rx="2" fill="#a855f7"/>
+  <rect x="273" y="204" width="11" height="9" rx="2" fill="#a855f7"/>
+  <rect x="286" y="204" width="11" height="9" rx="2" fill="#a855f7"/>
+
+  <text x="64" y="306" class="t10" font-weight="600">加载 B · kv 16-31 → rB[0..3]</text>
+  <text x="58" y="325" text-anchor="end" class="t85b bl">16</text>
+  <text x="58" y="413" text-anchor="end" class="t85b bl">24</text>
+  <text x="58" y="490" text-anchor="end" class="t85 mut">31</text>
+  <rect x="64" y="316" width="416" height="176" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+  <rect x="64" y="316" width="416" height="176" fill="url(#pB)"/>
+  <!-- rB[0] 蓝：kv{16,17} × hd{0,1} -->
+  <rect x="63" y="315" width="28" height="24" rx="3" fill="none" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="65" y="317" width="11" height="9" rx="2" fill="#3b82f6"/>
+  <rect x="78" y="317" width="11" height="9" rx="2" fill="#3b82f6"/>
+  <rect x="65" y="328" width="11" height="9" rx="2" fill="#3b82f6"/>
+  <rect x="78" y="328" width="11" height="9" rx="2" fill="#3b82f6"/>
+  <!-- rB[1] 绿：kv{24,25} × hd{0,1} -->
+  <rect x="63" y="403" width="28" height="24" rx="3" fill="none" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="65" y="405" width="11" height="9" rx="2" fill="#22c55e"/>
+  <rect x="78" y="405" width="11" height="9" rx="2" fill="#22c55e"/>
+  <rect x="65" y="416" width="11" height="9" rx="2" fill="#22c55e"/>
+  <rect x="78" y="416" width="11" height="9" rx="2" fill="#22c55e"/>
+  <!-- rB[2] 橙：kv{16,17} × hd{16,17} -->
+  <rect x="271" y="315" width="28" height="24" rx="3" fill="none" stroke="#f97316" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="273" y="317" width="11" height="9" rx="2" fill="#f97316"/>
+  <rect x="286" y="317" width="11" height="9" rx="2" fill="#f97316"/>
+  <rect x="273" y="328" width="11" height="9" rx="2" fill="#f97316"/>
+  <rect x="286" y="328" width="11" height="9" rx="2" fill="#f97316"/>
+  <!-- rB[3] 紫：kv{24,25} × hd{16,17} -->
+  <rect x="271" y="403" width="28" height="24" rx="3" fill="none" stroke="#a855f7" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="273" y="405" width="11" height="9" rx="2" fill="#a855f7"/>
+  <rect x="286" y="405" width="11" height="9" rx="2" fill="#a855f7"/>
+  <rect x="273" y="416" width="11" height="9" rx="2" fill="#a855f7"/>
+  <rect x="286" y="416" width="11" height="9" rx="2" fill="#a855f7"/>
+
+  <text x="20" y="522" class="t85 mut">rA[2]/rA[3]、rB[2]/rB[3]（橙/紫，hd 16-17）同理装配 h = 1 的 atom（图中略）</text>
+
+  <!-- 左右对应线 + 分区虚线 -->
+  <line x1="482" y1="180" x2="566" y2="180" stroke="#cbd5e1" stroke-width="1.2"/>
+  <line x1="482" y1="396" x2="566" y2="396" stroke="#cbd5e1" stroke-width="1.2"/>
+  <line x1="520" y1="78" x2="520" y2="545" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2 3"/>
+
+  <!-- ===== 右区：byte_perm 装配（h=0） ===== -->
+  <text x="540" y="70" class="t10" font-weight="600">② 装配（lane 0 · h = 0）：byte_perm 凑 B fragment</text>
+
+  <!-- stackA = rA[0] ⊕ rA[1] -->
+  <text x="570" y="102" class="t85 mut">stackA：rA[0]（kv 0-1）与 rA[1]（kv 8-9）上下堆叠</text>
+  <text x="593" y="116" text-anchor="middle" class="t85 mut">hd 0</text>
+  <text x="639" y="116" text-anchor="middle" class="t85 mut">hd 1</text>
+  <text x="565" y="141" text-anchor="end" class="t85 mut">kv 0</text>
+  <text x="565" y="167" text-anchor="end" class="t85 mut">kv 1</text>
+  <text x="565" y="193" text-anchor="end" class="t85 mut">kv 8</text>
+  <text x="565" y="219" text-anchor="end" class="t85 mut">kv 9</text>
+  <rect x="570" y="124" width="46" height="26" fill="#3b82f6" stroke="#ffffff"/>
+  <rect x="616" y="124" width="46" height="26" fill="#3b82f6" stroke="#ffffff"/>
+  <rect x="570" y="150" width="46" height="26" fill="#3b82f6" stroke="#ffffff"/>
+  <rect x="616" y="150" width="46" height="26" fill="#3b82f6" stroke="#ffffff"/>
+  <rect x="570" y="176" width="46" height="26" fill="#22c55e" stroke="#ffffff"/>
+  <rect x="616" y="176" width="46" height="26" fill="#22c55e" stroke="#ffffff"/>
+  <rect x="570" y="202" width="46" height="26" fill="#22c55e" stroke="#ffffff"/>
+  <rect x="616" y="202" width="46" height="26" fill="#22c55e" stroke="#ffffff"/>
+  <rect x="570" y="124" width="92" height="104" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+  <rect x="573" y="127" width="40" height="98" rx="4" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <rect x="619" y="127" width="40" height="98" rx="4" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-dasharray="4 3"/>
+
+  <!-- B[0] ← stackA 左列（hd0 偶，0x6420） -->
+  <text x="822" y="116" text-anchor="middle" class="t85b">B[0] · w0 · n 偶 · k 低</text>
+  <rect x="799" y="123" width="46" height="106" rx="4" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+  <rect x="800" y="124" width="44" height="25" fill="#3b82f6"/>
+  <rect x="800" y="150" width="44" height="25" fill="#3b82f6"/>
+  <rect x="800" y="176" width="44" height="25" fill="#22c55e"/>
+  <rect x="800" y="202" width="44" height="25" fill="#22c55e"/>
+  <text x="822" y="140" text-anchor="middle" class="t85b wh">kv 0</text>
+  <text x="822" y="166" text-anchor="middle" class="t85b wh">kv 1</text>
+  <text x="822" y="192" text-anchor="middle" class="t85b wh">kv 8</text>
+  <text x="822" y="218" text-anchor="middle" class="t85b wh">kv 9</text>
+  <!-- B[2] ← stackA 右列（hd1 奇，0x7531） -->
+  <text x="972" y="116" text-anchor="middle" class="t85b">B[2] · w2 · n 奇 · k 低</text>
+  <rect x="949" y="123" width="46" height="106" rx="4" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+  <rect x="950" y="124" width="44" height="25" fill="#3b82f6"/>
+  <rect x="950" y="150" width="44" height="25" fill="#3b82f6"/>
+  <rect x="950" y="176" width="44" height="25" fill="#22c55e"/>
+  <rect x="950" y="202" width="44" height="25" fill="#22c55e"/>
+  <text x="972" y="140" text-anchor="middle" class="t85b wh">kv 0</text>
+  <text x="972" y="166" text-anchor="middle" class="t85b wh">kv 1</text>
+  <text x="972" y="192" text-anchor="middle" class="t85b wh">kv 8</text>
+  <text x="972" y="218" text-anchor="middle" class="t85b wh">kv 9</text>
+  <!-- 装配箭头 A：偶列 → B[0]，奇列 → B[2] -->
+  <path d="M593 228 L593 258 L822 258 L822 232" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="700" y="252" text-anchor="middle" class="m85 bl">0x6420（偶列）</text>
+  <path d="M639 228 L639 242 L972 242 L972 232" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="760" y="236" text-anchor="middle" class="m85 or">0x7531（奇列）</text>
+
+  <!-- stackB = rB[0] ⊕ rB[1] -->
+  <text x="570" y="318" class="t85 mut">stackB：rB[0]（kv 16-17）与 rB[1]（kv 24-25）上下堆叠</text>
+  <text x="593" y="332" text-anchor="middle" class="t85 mut">hd 0</text>
+  <text x="639" y="332" text-anchor="middle" class="t85 mut">hd 1</text>
+  <text x="565" y="357" text-anchor="end" class="t85 mut">kv 16</text>
+  <text x="565" y="383" text-anchor="end" class="t85 mut">kv 17</text>
+  <text x="565" y="409" text-anchor="end" class="t85 mut">kv 24</text>
+  <text x="565" y="435" text-anchor="end" class="t85 mut">kv 25</text>
+  <rect x="570" y="340" width="46" height="26" fill="#3b82f6" stroke="#ffffff"/>
+  <rect x="616" y="340" width="46" height="26" fill="#3b82f6" stroke="#ffffff"/>
+  <rect x="570" y="366" width="46" height="26" fill="#3b82f6" stroke="#ffffff"/>
+  <rect x="616" y="366" width="46" height="26" fill="#3b82f6" stroke="#ffffff"/>
+  <rect x="570" y="392" width="46" height="26" fill="#22c55e" stroke="#ffffff"/>
+  <rect x="616" y="392" width="46" height="26" fill="#22c55e" stroke="#ffffff"/>
+  <rect x="570" y="418" width="46" height="26" fill="#22c55e" stroke="#ffffff"/>
+  <rect x="616" y="418" width="46" height="26" fill="#22c55e" stroke="#ffffff"/>
+  <rect x="570" y="340" width="92" height="104" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+  <rect x="573" y="343" width="40" height="98" rx="4" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <rect x="619" y="343" width="40" height="98" rx="4" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-dasharray="4 3"/>
+
+  <!-- B[1] ← stackB 左列（hd0 偶，0x6420） -->
+  <text x="822" y="332" text-anchor="middle" class="t85b">B[1] · w1 · n 偶 · k 高</text>
+  <rect x="799" y="339" width="46" height="106" rx="4" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+  <rect x="800" y="340" width="44" height="25" fill="#3b82f6"/>
+  <rect x="800" y="366" width="44" height="25" fill="#3b82f6"/>
+  <rect x="800" y="392" width="44" height="25" fill="#22c55e"/>
+  <rect x="800" y="418" width="44" height="25" fill="#22c55e"/>
+  <text x="822" y="356" text-anchor="middle" class="t85b wh">kv 16</text>
+  <text x="822" y="382" text-anchor="middle" class="t85b wh">kv 17</text>
+  <text x="822" y="408" text-anchor="middle" class="t85b wh">kv 24</text>
+  <text x="822" y="434" text-anchor="middle" class="t85b wh">kv 25</text>
+  <!-- B[3] ← stackB 右列（hd1 奇，0x7531） -->
+  <text x="972" y="332" text-anchor="middle" class="t85b">B[3] · w3 · n 奇 · k 高</text>
+  <rect x="949" y="339" width="46" height="106" rx="4" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+  <rect x="950" y="340" width="44" height="25" fill="#3b82f6"/>
+  <rect x="950" y="366" width="44" height="25" fill="#3b82f6"/>
+  <rect x="950" y="392" width="44" height="25" fill="#22c55e"/>
+  <rect x="950" y="418" width="44" height="25" fill="#22c55e"/>
+  <text x="972" y="356" text-anchor="middle" class="t85b wh">kv 16</text>
+  <text x="972" y="382" text-anchor="middle" class="t85b wh">kv 17</text>
+  <text x="972" y="408" text-anchor="middle" class="t85b wh">kv 24</text>
+  <text x="972" y="434" text-anchor="middle" class="t85b wh">kv 25</text>
+  <!-- 装配箭头 B：偶列 → B[1]，奇列 → B[3] -->
+  <path d="M593 444 L593 490 L822 490 L822 448" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="700" y="484" text-anchor="middle" class="m85 bl">0x6420（偶列）</text>
+  <path d="M639 444 L639 468 L972 468 L972 448" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="800" y="462" text-anchor="middle" class="m85 or">0x7531（奇列）</text>
+
+  <text x="540" y="508" class="t85 mut">输出寄存器 = 1 列 4 块（4 个 b8）；颜色 = 来源（蓝 ← r0，绿 ← r1），自上而下 = 字节 0→3</text>
+
+  <!-- ===== 底部点睛 ===== -->
+  <rect x="40" y="568" width="1120" height="44" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="56" y="586" class="t10 gr" font-weight="600">每 n-tile 仅 4 次 byte_perm（2 列 × 2 次加载），零 shfl、零 sel —— 装配即转置</text>
+  <text x="56" y="604" class="t95">B[0..3] 即该 16×16×32 atom 的 B fragment 槽位（w0 偶 n·k 低 / w1 偶 n·k 高 / w2 奇 n·k 低 / w3 奇 n·k 高），对应 4.3 节代码 tCrB32(0..3)</text>
+</svg>

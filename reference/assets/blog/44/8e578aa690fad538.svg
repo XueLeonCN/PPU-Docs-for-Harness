@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 450" width="940" height="450" font-family="-apple-system,BlinkMacSystemFont,Helvetica Neue,Segoe UI,sans-serif">
+<rect width="940" height="450" fill="#f5f3e8"/>
+<rect x="78" y="44" width="802" height="95.0" fill="#f2dede" opacity=".55"/>
+<rect x="78" y="139.0" width="802" height="209.0" fill="#dde8d5" opacity=".55"/>
+<line x1="78" y1="329.0" x2="880" y2="329.0" stroke="#1d1d1b" stroke-width="1" opacity=".28"/>
+<text x="69" y="333.0" font-size="12" fill="#1d1d1b" text-anchor="end" opacity=".75">-10%</text>
+<line x1="78" y1="291.0" x2="880" y2="291.0" stroke="#1d1d1b" stroke-width="1" opacity=".28"/>
+<text x="69" y="295.0" font-size="12" fill="#1d1d1b" text-anchor="end" opacity=".75">-8%</text>
+<line x1="78" y1="253.0" x2="880" y2="253.0" stroke="#1d1d1b" stroke-width="1" opacity=".28"/>
+<text x="69" y="257.0" font-size="12" fill="#1d1d1b" text-anchor="end" opacity=".75">-6%</text>
+<line x1="78" y1="215.0" x2="880" y2="215.0" stroke="#1d1d1b" stroke-width="1" opacity=".28"/>
+<text x="69" y="219.0" font-size="12" fill="#1d1d1b" text-anchor="end" opacity=".75">-4%</text>
+<line x1="78" y1="177.0" x2="880" y2="177.0" stroke="#1d1d1b" stroke-width="1" opacity=".28"/>
+<text x="69" y="181.0" font-size="12" fill="#1d1d1b" text-anchor="end" opacity=".75">-2%</text>
+<line x1="78" y1="139.0" x2="880" y2="139.0" stroke="#1d1d1b" stroke-width="0" opacity=".28"/>
+<text x="69" y="143.0" font-size="12" fill="#1d1d1b" text-anchor="end" opacity=".75">+0%</text>
+<line x1="78" y1="101.0" x2="880" y2="101.0" stroke="#1d1d1b" stroke-width="1" opacity=".28"/>
+<text x="69" y="105.0" font-size="12" fill="#1d1d1b" text-anchor="end" opacity=".75">+2%</text>
+<line x1="78" y1="63.0" x2="880" y2="63.0" stroke="#1d1d1b" stroke-width="1" opacity=".28"/>
+<text x="69" y="67.0" font-size="12" fill="#1d1d1b" text-anchor="end" opacity=".75">+4%</text>
+<line x1="78" y1="139.0" x2="880" y2="139.0" stroke="#1d1d1b" stroke-width="1.6" stroke-dasharray="7 5"/>
+<text x="886" y="143.0" font-size="12.5" fill="#1d1d1b" opacity=".8">持平</text>
+<line x1="78" y1="44" x2="78" y2="348" stroke="#1d1d1b" stroke-width="1.8"/>
+<line x1="78" y1="348" x2="880" y2="348" stroke="#1d1d1b" stroke-width="1.8"/>
+<polyline points="78.0,123.6 96.7,117.9 115.3,104.1 134.0,141.0 152.6,107.5 171.3,131.3 189.9,121.5 208.6,120.4 227.2,156.8 245.9,135.5 264.5,130.3 283.2,136.3 301.8,140.2 320.5,176.1 339.1,135.7 357.8,92.2 376.4,109.1 395.1,101.2 413.7,73.3 432.4,95.5 451.0,88.3 469.7,281.5 488.3,311.9 507.0,190.5 525.6,187.9 544.3,186.3 562.9,201.6 581.6,195.7 600.2,202.2 618.9,190.2 637.5,190.6 656.2,186.3 674.8,195.6 693.5,188.2 712.1,184.5 730.8,181.3 749.4,178.6 768.1,186.1 786.7,188.1 805.4,189.0 824.0,175.5 842.7,191.8 861.3,195.1 880.0,192.7" fill="none" stroke="#c2185b" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="78.0" cy="123.6" r="3.3" fill="#c2185b"/>
+<circle cx="96.7" cy="117.9" r="3.3" fill="#c2185b"/>
+<circle cx="115.3" cy="104.1" r="3.3" fill="#c2185b"/>
+<circle cx="134.0" cy="141.0" r="3.3" fill="#c2185b"/>
+<circle cx="152.6" cy="107.5" r="3.3" fill="#c2185b"/>
+<circle cx="171.3" cy="131.3" r="3.3" fill="#c2185b"/>
+<circle cx="189.9" cy="121.5" r="3.3" fill="#c2185b"/>
+<circle cx="208.6" cy="120.4" r="3.3" fill="#c2185b"/>
+<circle cx="227.2" cy="156.8" r="3.3" fill="#c2185b"/>
+<circle cx="245.9" cy="135.5" r="3.3" fill="#c2185b"/>
+<circle cx="264.5" cy="130.3" r="3.3" fill="#c2185b"/>
+<circle cx="283.2" cy="136.3" r="3.3" fill="#c2185b"/>
+<circle cx="301.8" cy="140.2" r="3.3" fill="#c2185b"/>
+<circle cx="320.5" cy="176.1" r="3.3" fill="#c2185b"/>
+<circle cx="339.1" cy="135.7" r="3.3" fill="#c2185b"/>
+<circle cx="357.8" cy="92.2" r="3.3" fill="#c2185b"/>
+<circle cx="376.4" cy="109.1" r="3.3" fill="#c2185b"/>
+<circle cx="395.1" cy="101.2" r="3.3" fill="#c2185b"/>
+<circle cx="413.7" cy="73.3" r="3.3" fill="#c2185b"/>
+<circle cx="432.4" cy="95.5" r="3.3" fill="#c2185b"/>
+<circle cx="451.0" cy="88.3" r="3.3" fill="#c2185b"/>
+<circle cx="469.7" cy="281.5" r="3.3" fill="#c2185b"/>
+<circle cx="488.3" cy="311.9" r="3.3" fill="#c2185b"/>
+<circle cx="507.0" cy="190.5" r="3.3" fill="#c2185b"/>
+<circle cx="525.6" cy="187.9" r="3.3" fill="#c2185b"/>
+<circle cx="544.3" cy="186.3" r="3.3" fill="#c2185b"/>
+<circle cx="562.9" cy="201.6" r="3.3" fill="#c2185b"/>
+<circle cx="581.6" cy="195.7" r="3.3" fill="#c2185b"/>
+<circle cx="600.2" cy="202.2" r="3.3" fill="#c2185b"/>
+<circle cx="618.9" cy="190.2" r="3.3" fill="#c2185b"/>
+<circle cx="637.5" cy="190.6" r="3.3" fill="#c2185b"/>
+<circle cx="656.2" cy="186.3" r="3.3" fill="#c2185b"/>
+<circle cx="674.8" cy="195.6" r="3.3" fill="#c2185b"/>
+<circle cx="693.5" cy="188.2" r="3.3" fill="#c2185b"/>
+<circle cx="712.1" cy="184.5" r="3.3" fill="#c2185b"/>
+<circle cx="730.8" cy="181.3" r="3.3" fill="#c2185b"/>
+<circle cx="749.4" cy="178.6" r="3.3" fill="#c2185b"/>
+<circle cx="768.1" cy="186.1" r="3.3" fill="#c2185b"/>
+<circle cx="786.7" cy="188.1" r="3.3" fill="#c2185b"/>
+<circle cx="805.4" cy="189.0" r="3.3" fill="#c2185b"/>
+<circle cx="824.0" cy="175.5" r="3.3" fill="#c2185b"/>
+<circle cx="842.7" cy="191.8" r="3.3" fill="#c2185b"/>
+<circle cx="861.3" cy="195.1" r="3.3" fill="#c2185b"/>
+<circle cx="880.0" cy="192.7" r="3.3" fill="#c2185b"/>
+<line x1="78.0" y1="348" x2="78.0" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="78.0" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">1</text>
+<line x1="152.6" y1="348" x2="152.6" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="152.6" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">32</text>
+<line x1="227.2" y1="348" x2="227.2" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="227.2" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">64</text>
+<line x1="301.8" y1="348" x2="301.8" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="301.8" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">96</text>
+<line x1="376.4" y1="348" x2="376.4" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="376.4" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">128</text>
+<line x1="451.0" y1="348" x2="451.0" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="451.0" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">160</text>
+<line x1="507.0" y1="348" x2="507.0" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="507.0" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">256</text>
+<line x1="581.6" y1="348" x2="581.6" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="581.6" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">384</text>
+<line x1="656.2" y1="348" x2="656.2" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="656.2" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">512</text>
+<line x1="730.8" y1="348" x2="730.8" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="730.8" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">768</text>
+<line x1="805.4" y1="348" x2="805.4" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="805.4" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">1024</text>
+<line x1="842.7" y1="348" x2="842.7" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="842.7" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">1536</text>
+<line x1="880.0" y1="348" x2="880.0" y2="353" stroke="#1d1d1b" stroke-width="1.2" opacity=".7"/>
+<text x="880.0" y="367" font-size="11.5" fill="#1d1d1b" text-anchor="middle" opacity=".85">2048</text>
+<text x="479.0" y="390" font-size="13" fill="#1d1d1b" text-anchor="middle">M（K=1024，每点是该 M 下全部 N 的中位数）</text>
+<text transform="translate(20,196.0) rotate(-90)" font-size="13" fill="#1d1d1b" text-anchor="middle">CuTe-Free 相对库上 CuTe 的耗时</text>
+<text x="874" y="59" font-size="12" fill="#a03030" text-anchor="end" opacity=".9">↑ CuTe-Free 更慢</text>
+<text x="874" y="339" font-size="12" fill="#2f6b34" text-anchor="end" opacity=".9">↓ CuTe-Free 更快</text>
+<line x1="488.3" y1="318.9" x2="497.3" y2="324.0" stroke="#1d1d1b" stroke-width="1.1" opacity=".55"/>
+<text x="501.3" y="330" font-size="12.5" fill="#1d1d1b">M=192~224：快 8~9%</text>
+<text x="264.5" y="58" font-size="12.5" fill="#1d1d1b" text-anchor="middle">M ≤ 160：噪声内互有胜负</text>
+<text x="768.1" y="222.4" font-size="12.5" fill="#1d1d1b" text-anchor="middle">M ≥ 256：稳定快 2~3%</text>
+<text x="78" y="438" font-size="11.5" fill="#1d1d1b" opacity=".65">1763 个 clean case（spread ≤ 1.10），两轮取中位；负值 = CuTe-Free 耗时更少</text>
+</svg>

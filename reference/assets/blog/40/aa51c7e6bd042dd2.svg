@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 620" width="1080" role="img" aria-label="图3 P（QK GEMM 输出）的 K 轴数据在各 lane 的分布">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; fill: #1e293b; }
+      .t15 { font-size: 15px; font-weight: 700; }
+      .t10 { font-size: 10.5px; }
+      .t95 { font-size: 9.5px; }
+      .t85 { font-size: 8.5px; }
+      .t85b { font-size: 8.5px; font-weight: 700; }
+      .m95 { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 9.5px; }
+      .m85 { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 8.5px; }
+      .mut { fill: #64748b; }
+      .bl { fill: #1d4ed8; } .gr { fill: #15803d; }
+    </style>
+    <pattern id="pg" x="140" y="110" width="28" height="22" patternUnits="userSpaceOnUse">
+      <path d="M0 0V22" stroke="#e2e8f0" stroke-width="0.6"/>
+      <path d="M0 0H28" stroke="#e2e8f0" stroke-width="0.6"/>
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="1080" height="620" fill="#ffffff"/>
+  <text x="20" y="30" class="t15">图3 · P（QK GEMM 输出）的 K 轴数据在各 lane 的分布</text>
+  <text x="20" y="48" class="t95 mut">P = softmax(QK^T) 的输出累加器，作为 PV GEMM 的 A 操作数；16×32 = 一个 warp 的 P 输出块；q = lane%4，p = lane/4</text>
+
+  <!-- 轴标注与图例 -->
+  <text x="588" y="84" text-anchor="middle" class="t10 mut">k / kv 归约轴（32 列，k=0..31）</text>
+  <rect x="890" y="72" width="14" height="14" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <text x="910" y="84" class="t95">= lane 0（q=0, p=0）持有的元素</text>
+  <text x="96" y="286" text-anchor="middle" class="t10 mut" transform="rotate(-90 96 286)">m / query（16 行，m=0..15）</text>
+
+  <!-- 列刻度（仅 0/8/16/24/31，格内不标序号） -->
+  <text x="154" y="102" text-anchor="middle" class="m85 mut">0</text>
+  <text x="378" y="102" text-anchor="middle" class="m85 mut">8</text>
+  <text x="602" y="102" text-anchor="middle" class="m85 mut">16</text>
+  <text x="826" y="102" text-anchor="middle" class="m85 mut">24</text>
+  <text x="1022" y="102" text-anchor="middle" class="m85 mut">31</text>
+
+  <!-- 行刻度：lane 0 持有的 m=0、8 两行蓝色加粗 -->
+  <text x="132" y="124" text-anchor="end" class="t85b bl">0</text>
+  <text x="132" y="300" text-anchor="end" class="t85b bl">8</text>
+  <text x="132" y="454" text-anchor="end" class="t85 mut">15</text>
+
+  <!-- 16×32 网格块（x=140..1036, y=110..462；列宽 28 行高 22） -->
+  <rect x="140" y="110" width="896" height="352" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+  <rect x="140" y="110" width="896" height="352" fill="url(#pg)"/>
+
+  <!-- lane 0 高亮：行 m∈{0,8} × 列 k∈{0,1,8,9,16,17,24,25}，共 16 格 -->
+  <!-- m=0 行（y=112） -->
+  <rect x="142" y="112" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="170" y="112" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="366" y="112" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="394" y="112" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="590" y="112" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="618" y="112" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="814" y="112" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="842" y="112" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <!-- m=8 行（y=288） -->
+  <rect x="142" y="288" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="170" y="288" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="366" y="288" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="394" y="288" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="590" y="288" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="618" y="288" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="814" y="288" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+  <rect x="842" y="288" width="24" height="18" rx="3" fill="#3b82f6" stroke="#1d4ed8"/>
+
+  <!-- 公式与说明 -->
+  <text x="140" y="496" class="m95">lane 持有坐标：k = 2q + v0 + 8·j（q=lane%4，v0 ∈ {0,1}，j=0..3）；m = p + 8·v1（p=lane/4，v1 ∈ {0,1}）</text>
+  <text x="140" y="518" class="t85 mut">每个 lane 持有 2 行（m）× 8 列（k）= 16 个元素；图示仅高亮 lane 0（q=0, p=0：m ∈ {0,8}，k ∈ {0,1,8,9,16,17,24,25}），其他 31 个 lane 按相同规律填充其余格</text>
+  <text x="140" y="535" class="t85 mut">K 分布只取决于 q：每 lane 2 个连续 k，4 个 lane（q=0..3）一组覆盖 8 个 k，每 8 列重复；同 q 的 8 个 lane（p 不同）持相同 k、不同 m</text>
+
+  <!-- 底部点睛 -->
+  <rect x="40" y="552" width="1000" height="44" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="56" y="571" class="t10 gr" font-weight="600">πk 天然对齐：V 经 ldmatrix.trans.b16 加载后（见图 4）每 lane 的 K（列）分布与此逐 lane 一致</text>
+  <text x="56" y="588" class="t95">A（P）、B（V）两侧在每个 (lane, reg, byte) 槽位承载相同的真实 k → 归约和不变，K 轴无需任何修正</text>
+</svg>

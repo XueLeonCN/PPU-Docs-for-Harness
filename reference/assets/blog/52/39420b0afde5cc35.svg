@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="603.707" style="display:block" viewBox="0 0 820 442" width="1120"><rect fill="#fdfbf5" height="442" width="820" x="0" y="0" /><g transform="translate(12,14)">
+<defs>
+<pattern height="12" id="f6-pat-a-w0" patternUnits="userSpaceOnUse" width="8"><rect fill="#2a5780" height="12" opacity="0.22" width="8" /><rect fill="#2a5780" height="12" opacity="0.95" width="4" /></pattern>
+<pattern height="12" id="f6-pat-a-w1" patternUnits="userSpaceOnUse" width="8"><rect fill="#3f6b34" height="12" opacity="0.22" width="8" /><rect fill="#3f6b34" height="12" opacity="0.95" width="4" x="4" /></pattern>
+</defs>
+<text fill="#211d15" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="10.982143" font-weight="600" x="0" y="13">① 同步推进：轮询执行 MMA，随后依次执行 promotion</text>
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="32">W0 · MMA</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="26" y2="26" />
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="54">W1 · MMA</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="48" y2="48" />
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="76">W0 · VALU</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="70" y2="70" />
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="98">W1 · VALU</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="92" y2="92" />
+<line stroke="#a89c83" stroke-dasharray="3 3" x1="396.0" x2="396.0" y1="18" y2="150" />
+<text fill="#8a8069" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="8.785714" x="398.0" y="172">stage 1</text>
+<rect data-cycle-start="0" data-cycle-width="768" data-kind="MMA-window" data-owner="W0" fill="url(#f6-pat-a-w0)" height="12" opacity="1" rx="1" width="192.0" x="96.0" y="22" />
+<rect data-cycle-start="768" data-cycle-width="216" data-kind="VALU" data-owner="W0" fill="#2a5780" height="12" opacity="0.85" rx="1" width="54.0" x="288.0" y="66" />
+<rect data-cycle-start="1200" data-cycle-width="768" data-kind="MMA-window" data-owner="W0" fill="url(#f6-pat-a-w0)" height="12" opacity="1" rx="1" width="192.0" x="396.0" y="22" />
+<rect data-cycle-start="1968" data-cycle-width="216" data-kind="VALU" data-owner="W0" fill="#2a5780" height="12" opacity="0.85" rx="1" width="54.0" x="588.0" y="66" />
+<rect data-cycle-start="0" data-cycle-width="768" data-kind="MMA-window" data-owner="W1" fill="url(#f6-pat-a-w1)" height="12" opacity="1" rx="1" width="192.0" x="96.0" y="44" />
+<rect data-cycle-start="984" data-cycle-width="216" data-kind="VALU" data-owner="W1" fill="#3f6b34" height="12" opacity="0.85" rx="1" width="54.0" x="342.0" y="88" />
+<rect data-cycle-start="1200" data-cycle-width="768" data-kind="MMA-window" data-owner="W1" fill="url(#f6-pat-a-w1)" height="12" opacity="1" rx="1" width="192.0" x="396.0" y="44" />
+<rect data-cycle-start="2184" data-cycle-width="216" data-kind="VALU" data-owner="W1" fill="#3f6b34" height="12" opacity="0.85" rx="1" width="54.0" x="642.0" y="88" />
+<rect data-cycle-start="0" data-cycle-width="768" fill="#b8470f" height="10" opacity="0.55" rx="1" width="192.0" x="96.0" y="108"><title>两组同时请求同一条 tensor，轮询执行。</title></rect>
+<rect data-cycle-start="1200" data-cycle-width="768" fill="#b8470f" height="10" opacity="0.55" rx="1" width="192.0" x="396.0" y="108"><title>两组同时请求同一条 tensor，轮询执行。</title></rect>
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="126">tensor</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="120" y2="120" />
+<rect data-cycle-start="0" data-cycle-width="768" data-kind="TFU" fill="#5d5545" height="10" opacity="0.55" rx="1" width="192.0" x="96.0" y="114" />
+<rect data-cycle-start="1200" data-cycle-width="768" data-kind="TFU" fill="#5d5545" height="10" opacity="0.55" rx="1" width="192.0" x="396.0" y="114" />
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="150">ALU</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="144" y2="144" />
+<rect data-cycle-start="768" data-cycle-width="216" data-kind="ALU" data-owner="W0" fill="#2a5780" height="10" opacity="0.65" rx="1" stroke="#a02b2b" stroke-width="1" width="54.0" x="288.0" y="138" />
+<rect data-cycle-start="1968" data-cycle-width="216" data-kind="ALU" data-owner="W0" fill="#2a5780" height="10" opacity="0.65" rx="1" stroke="#a02b2b" stroke-width="1" width="54.0" x="588.0" y="138" />
+<rect data-cycle-start="984" data-cycle-width="216" data-kind="ALU" data-owner="W1" fill="#3f6b34" height="10" opacity="0.65" rx="1" stroke="#a02b2b" stroke-width="1" width="54.0" x="342.0" y="138" />
+<rect data-cycle-start="2184" data-cycle-width="216" data-kind="ALU" data-owner="W1" fill="#3f6b34" height="10" opacity="0.65" rx="1" stroke="#a02b2b" stroke-width="1" width="54.0" x="642.0" y="138" />
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="8.785714" x="0" y="160">条纹 = 两个 warp 轮询占用同一条 tensor，不是同时执行。</text>
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="8.785714" text-anchor="start" x="0" y="188">蓝色 W0 / 绿色 W1；两图使用相同时间缩放，块长按理论开销比例绘制。</text></g><g transform="translate(12,236)">
+<defs>
+<pattern height="12" id="f6-pat-b-w0" patternUnits="userSpaceOnUse" width="8"><rect fill="#2a5780" height="12" opacity="0.22" width="8" /><rect fill="#2a5780" height="12" opacity="0.95" width="4" /></pattern>
+<pattern height="12" id="f6-pat-b-w1" patternUnits="userSpaceOnUse" width="8"><rect fill="#3f6b34" height="12" opacity="0.22" width="8" /><rect fill="#3f6b34" height="12" opacity="0.95" width="4" /></pattern>
+</defs>
+<text fill="#211d15" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="10.982143" font-weight="600" x="0" y="13">② 交替执行：一组做 MMA，另一组做 promotion</text>
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="32">W0 · MMA</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="26" y2="26" />
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="54">W1 · MMA</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="48" y2="48" />
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="76">W0 · VALU</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="70" y2="70" />
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="98">W1 · VALU</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="92" y2="92" />
+<line stroke="#a89c83" stroke-dasharray="3 3" x1="288.0" x2="288.0" y1="18" y2="150" />
+<text fill="#8a8069" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="8.785714" x="290.0" y="172">stage 1</text>
+<line stroke="#a89c83" stroke-dasharray="3 3" x1="480.0" x2="480.0" y1="18" y2="150" />
+<text fill="#8a8069" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="8.785714" x="482.0" y="172">stage 2</text>
+<rect data-cycle-start="0" data-cycle-width="384" data-kind="MMA" data-owner="W0" fill="#2a5780" height="12" opacity="0.85" rx="1" width="96.0" x="96.0" y="22" />
+<rect data-cycle-start="384" data-cycle-width="216" data-kind="VALU" data-owner="W0" fill="#2a5780" height="12" opacity="0.85" rx="1" width="54.0" x="192.0" y="66" />
+<rect data-cycle-start="600" data-cycle-width="168" data-kind="wait" fill="#8a8069" height="12" opacity="0.45" rx="1" width="42.0" x="246.0" y="66" />
+<rect data-cycle-start="768" data-cycle-width="384" data-kind="MMA" data-owner="W0" fill="#2a5780" height="12" opacity="0.85" rx="1" width="96.0" x="288.0" y="22" />
+<rect data-cycle-start="1152" data-cycle-width="216" data-kind="VALU" data-owner="W0" fill="#2a5780" height="12" opacity="0.85" rx="1" width="54.0" x="384.0" y="66" />
+<rect data-cycle-start="1368" data-cycle-width="168" data-kind="wait" fill="#8a8069" height="12" opacity="0.45" rx="1" width="42.0" x="438.0" y="66" />
+<rect data-cycle-start="1536" data-cycle-width="384" data-kind="MMA" data-owner="W0" fill="#2a5780" height="12" opacity="0.85" rx="1" width="96.0" x="480.0" y="22" />
+<rect data-cycle-start="1920" data-cycle-width="216" data-kind="VALU" data-owner="W0" fill="#2a5780" height="12" opacity="0.85" rx="1" width="54.0" x="576.0" y="66" />
+<rect data-cycle-start="2136" data-cycle-width="168" data-kind="wait" fill="#8a8069" height="12" opacity="0.45" rx="1" width="42.0" x="630.0" y="66" />
+<rect data-cycle-start="384" data-cycle-width="384" data-kind="MMA" data-owner="W1" fill="#3f6b34" height="12" opacity="0.85" rx="1" width="96.0" x="192.0" y="44" />
+<rect data-cycle-start="768" data-cycle-width="216" data-kind="VALU" data-owner="W1" fill="#3f6b34" height="12" opacity="0.85" rx="1" width="54.0" x="288.0" y="88" />
+<rect data-cycle-start="984" data-cycle-width="168" data-kind="wait" fill="#8a8069" height="12" opacity="0.45" rx="1" width="42.0" x="342.0" y="88" />
+<rect data-cycle-start="1152" data-cycle-width="384" data-kind="MMA" data-owner="W1" fill="#3f6b34" height="12" opacity="0.85" rx="1" width="96.0" x="384.0" y="44" />
+<rect data-cycle-start="1536" data-cycle-width="216" data-kind="VALU" data-owner="W1" fill="#3f6b34" height="12" opacity="0.85" rx="1" width="54.0" x="480.0" y="88" />
+<rect data-cycle-start="1752" data-cycle-width="168" data-kind="wait" fill="#8a8069" height="12" opacity="0.45" rx="1" width="42.0" x="534.0" y="88" />
+<rect data-cycle-start="1920" data-cycle-width="384" data-kind="MMA" data-owner="W1" fill="#3f6b34" height="12" opacity="0.85" rx="1" width="96.0" x="576.0" y="44" />
+<rect data-cycle-start="2304" data-cycle-width="216" data-kind="VALU" data-owner="W1" fill="#3f6b34" height="12" opacity="0.85" rx="1" width="54.0" x="672.0" y="88" />
+<rect data-cycle-start="2520" data-cycle-width="168" data-kind="wait" fill="#8a8069" height="12" opacity="0.45" rx="1" width="42.0" x="726.0" y="88" />
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="126">tensor</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="120" y2="120" />
+<rect data-cycle-start="0" data-cycle-width="2304" data-kind="TFU" fill="#5d5545" height="10" opacity="0.55" rx="1" width="576.0" x="96.0" y="114" />
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9.517857" x="0" y="150">ALU</text>
+<line stroke="#d9d1bc" x1="96" x2="771" y1="144" y2="144" />
+<rect data-cycle-start="384" data-cycle-width="216" data-kind="ALU" data-owner="W0" fill="#2a5780" height="10" opacity="0.55" rx="1" width="54.0" x="192.0" y="138" />
+<rect data-cycle-start="768" data-cycle-width="216" data-kind="ALU" data-owner="W1" fill="#3f6b34" height="10" opacity="0.55" rx="1" width="54.0" x="288.0" y="138" />
+<rect data-cycle-start="1152" data-cycle-width="216" data-kind="ALU" data-owner="W0" fill="#2a5780" height="10" opacity="0.55" rx="1" width="54.0" x="384.0" y="138" />
+<rect data-cycle-start="1536" data-cycle-width="216" data-kind="ALU" data-owner="W1" fill="#3f6b34" height="10" opacity="0.55" rx="1" width="54.0" x="480.0" y="138" />
+<rect data-cycle-start="1920" data-cycle-width="216" data-kind="ALU" data-owner="W0" fill="#2a5780" height="10" opacity="0.55" rx="1" width="54.0" x="576.0" y="138" />
+<rect data-cycle-start="2304" data-cycle-width="216" data-kind="ALU" data-owner="W1" fill="#3f6b34" height="10" opacity="0.65" rx="1" stroke="#a02b2b" stroke-width="1" width="54.0" x="672.0" y="138" />
+<rect data-cycle-start="2304" data-cycle-width="216" data-kind="ALU" data-owner="W1" fill="#3f6b34" height="10" opacity="0.65" rx="1" stroke="#a02b2b" stroke-width="1" width="54.0" x="672.0" y="138" />
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="8.785714" x="0" y="160">灰色 = 等另一组的 MMA 结束；红框 = TFU 空闲时仍在执行的 VALU。</text>
+<text fill="#5d5545" font-family="'Alibaba PuHuiTi 2','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="8.785714" text-anchor="start" x="0" y="188">蓝色 W0 / 绿色 W1；两图使用相同时间缩放，块长按理论开销比例绘制。</text></g></svg>

@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 440" width="1080" role="img" aria-label="图7 PV GEMM 输出 O 的 N 轴错位与 lane 内交换修正">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; fill: #1e293b; }
+      .t15 { font-size: 15px; font-weight: 700; }
+      .t11b { font-size: 11px; font-weight: 600; }
+      .t10 { font-size: 10.5px; }
+      .t95 { font-size: 9.5px; }
+      .t85 { font-size: 8.5px; }
+      .t85b { font-size: 8.5px; font-weight: 700; }
+      .m85 { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 8.5px; }
+      .mut { fill: #64748b; }
+      .bl { fill: #1d4ed8; } .or { fill: #c2410c; } .gr { fill: #15803d; } .pu { fill: #7e22ce; } .rd { fill: #b91c1c; }
+    </style>
+    <marker id="ao" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+      <path d="M0 0L7 3.5L0 7z" fill="#c2410c"/>
+    </marker>
+    <marker id="ao2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse">
+      <path d="M0 0L6 3L0 6z" fill="#f97316"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1080" height="440" fill="#ffffff"/>
+  <text x="20" y="30" class="t15">图7 · PV GEMM 输出 O 的 N 轴（headdim）πn 错位：寄存器序 r0,r1,r2,r3 → 列 4q, 4q+2, 4q+1, 4q+3 与 lane 内交换归位</text>
+  <text x="20" y="48" class="t95 mut">O = P × V（atom m16n16k32；M / K 仅示意）；聚焦 N 轴：row m=0 由 q=0..3 四个 lane 铺满 16 列，每 lane 的 r0,r1,r2,r3 经 πn 落在列 4q, 4q+2, 4q+1, 4q+3</text>
+
+  <!-- ===== 2×2 GEMM 四格（P×V=O）；M/K 仅示意 ===== -->
+  <!-- 左上：空 -->
+  <rect x="60" y="60" width="200" height="40" fill="#f8fafc" stroke="#e2e8f0" stroke-dasharray="4 3"/>
+
+  <!-- 右上：V（K×N = 32×16）示意 -->
+  <rect x="300" y="60" width="544" height="40" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="505" y="84" text-anchor="middle" class="t11b bl">V（K×N = 32×16）</text>
+  <text x="712" y="84" text-anchor="middle" class="t85 mut">K 竖直 · N 水平（示意）</text>
+  <text x="288" y="80" text-anchor="middle" class="t10 mut" transform="rotate(-90 288 80)">K</text>
+
+  <!-- N 轴对齐虚线：V 的 N 列（0..3）→ O 的 N 列 -->
+  <line x1="317" y1="100" x2="317" y2="112" stroke="#93c5fd" stroke-width="1" stroke-dasharray="3 2"/>
+  <line x1="351" y1="100" x2="351" y2="112" stroke="#93c5fd" stroke-width="1" stroke-dasharray="3 2"/>
+  <line x1="385" y1="100" x2="385" y2="112" stroke="#93c5fd" stroke-width="1" stroke-dasharray="3 2"/>
+  <line x1="419" y1="100" x2="419" y2="112" stroke="#93c5fd" stroke-width="1" stroke-dasharray="3 2"/>
+
+  <!-- 左下：P（M×K = 16×32）示意 -->
+  <text x="160" y="122" text-anchor="middle" class="t10 mut">K →</text>
+  <rect x="60" y="130" width="200" height="200" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="160" y="222" text-anchor="middle" class="t11b" fill="#475569">P（M×K = 16×32）</text>
+  <text x="160" y="242" text-anchor="middle" class="t85 mut">M 竖直 · K 水平（示意）</text>
+  <text x="48" y="230" text-anchor="middle" class="t10 mut" transform="rotate(-90 48 230)">M</text>
+
+  <!-- 右下：O = P×V（M×N = 16×16），N 水平 16 列；m=0 行加高聚焦 -->
+  <text x="288" y="250" text-anchor="middle" class="t10 mut" transform="rotate(-90 288 250)">M</text>
+  <rect x="300" y="130" width="544" height="200" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+
+  <!-- lane 分组标签（row m=0：q=0..3 四 lane 各 4 列） -->
+  <text x="368" y="124" text-anchor="middle" class="t85b bl">lane 0 · q=0</text>
+  <text x="504" y="124" text-anchor="middle" class="t85b or">lane 1 · q=1</text>
+  <text x="640" y="124" text-anchor="middle" class="t85b gr">lane 2 · q=2</text>
+  <text x="776" y="124" text-anchor="middle" class="t85b pu">lane 3 · q=3</text>
+
+  <!-- m=0 行（y 130..166）：16 列按 lane 分色，格内标持有寄存器（按实际列顺序 = r0,r2,r1,r3 每组） -->
+  <!-- lane 0：列 0..3 -->
+  <rect x="300" y="130" width="34" height="36" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1.2"/>
+  <rect x="334" y="130" width="34" height="36" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1.2"/>
+  <rect x="368" y="130" width="34" height="36" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1.2"/>
+  <rect x="402" y="130" width="34" height="36" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1.2"/>
+  <!-- lane 1：列 4..7 -->
+  <rect x="436" y="130" width="34" height="36" fill="#fed7aa" stroke="#f97316"/>
+  <rect x="470" y="130" width="34" height="36" fill="#fed7aa" stroke="#f97316"/>
+  <rect x="504" y="130" width="34" height="36" fill="#fed7aa" stroke="#f97316"/>
+  <rect x="538" y="130" width="34" height="36" fill="#fed7aa" stroke="#f97316"/>
+  <!-- lane 2：列 8..11 -->
+  <rect x="572" y="130" width="34" height="36" fill="#bbf7d0" stroke="#22c55e"/>
+  <rect x="606" y="130" width="34" height="36" fill="#bbf7d0" stroke="#22c55e"/>
+  <rect x="640" y="130" width="34" height="36" fill="#bbf7d0" stroke="#22c55e"/>
+  <rect x="674" y="130" width="34" height="36" fill="#bbf7d0" stroke="#22c55e"/>
+  <!-- lane 3：列 12..15 -->
+  <rect x="708" y="130" width="34" height="36" fill="#e9d5ff" stroke="#a855f7"/>
+  <rect x="742" y="130" width="34" height="36" fill="#e9d5ff" stroke="#a855f7"/>
+  <rect x="776" y="130" width="34" height="36" fill="#e9d5ff" stroke="#a855f7"/>
+  <rect x="810" y="130" width="34" height="36" fill="#e9d5ff" stroke="#a855f7"/>
+  <!-- 格内寄存器标注（按实际列顺序：每 lane 组为 r0, r2, r1, r3 —— r1/r2 错位对调） -->
+  <text x="317" y="152" text-anchor="middle" class="t85b bl">r0</text>
+  <text x="351" y="152" text-anchor="middle" class="t85b bl">r2</text>
+  <text x="385" y="152" text-anchor="middle" class="t85b bl">r1</text>
+  <text x="419" y="152" text-anchor="middle" class="t85b bl">r3</text>
+  <text x="453" y="152" text-anchor="middle" class="t85b or">r0</text>
+  <text x="487" y="152" text-anchor="middle" class="t85b or">r2</text>
+  <text x="521" y="152" text-anchor="middle" class="t85b or">r1</text>
+  <text x="555" y="152" text-anchor="middle" class="t85b or">r3</text>
+  <text x="589" y="152" text-anchor="middle" class="t85b gr">r0</text>
+  <text x="623" y="152" text-anchor="middle" class="t85b gr">r2</text>
+  <text x="657" y="152" text-anchor="middle" class="t85b gr">r1</text>
+  <text x="691" y="152" text-anchor="middle" class="t85b gr">r3</text>
+  <text x="725" y="152" text-anchor="middle" class="t85b pu">r0</text>
+  <text x="759" y="152" text-anchor="middle" class="t85b pu">r2</text>
+  <text x="793" y="152" text-anchor="middle" class="t85b pu">r1</text>
+  <text x="827" y="152" text-anchor="middle" class="t85b pu">r3</text>
+  <text x="296" y="152" text-anchor="end" class="t85b bl">m=0</text>
+
+  <!-- lane 内交换弧（输出区域内）：每 lane 组内 列4q+1 的 r2 ↔ 列4q+2 的 r1 -->
+  <line x1="300" y1="166" x2="844" y2="166" stroke="#e2e8f0" stroke-width="0.6"/>
+  <path d="M351,172 C358,191 378,191 385,172" fill="none" stroke="#c2410c" stroke-width="2" marker-start="url(#ao)" marker-end="url(#ao)"/>
+  <path d="M487,172 C494,191 514,191 521,172" fill="none" stroke="#f97316" stroke-width="1.4" marker-start="url(#ao2)" marker-end="url(#ao2)"/>
+  <path d="M623,172 C630,191 650,191 657,172" fill="none" stroke="#f97316" stroke-width="1.4" marker-start="url(#ao2)" marker-end="url(#ao2)"/>
+  <path d="M759,172 C766,191 786,191 793,172" fill="none" stroke="#f97316" stroke-width="1.4" marker-start="url(#ao2)" marker-end="url(#ao2)"/>
+  <text x="306" y="188" class="t85 or">r1↔r2</text>
+  <line x1="300" y1="200" x2="844" y2="200" stroke="#e2e8f0" stroke-width="0.6"/>
+
+  <!-- m=1..15 行：淡化示意 -->
+  <line x1="334" y1="200" x2="334" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="368" y1="200" x2="368" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="402" y1="200" x2="402" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="436" y1="200" x2="436" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="470" y1="200" x2="470" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="504" y1="200" x2="504" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="538" y1="200" x2="538" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="572" y1="200" x2="572" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="606" y1="200" x2="606" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="640" y1="200" x2="640" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="674" y1="200" x2="674" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="708" y1="200" x2="708" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="742" y1="200" x2="742" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="776" y1="200" x2="776" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="810" y1="200" x2="810" y2="330" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="210" x2="844" y2="210" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="220" x2="844" y2="220" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="230" x2="844" y2="230" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="240" x2="844" y2="240" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="250" x2="844" y2="250" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="260" x2="844" y2="260" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="270" x2="844" y2="270" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="280" x2="844" y2="280" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="290" x2="844" y2="290" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="300" x2="844" y2="300" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="310" x2="844" y2="310" stroke="#f1f5f9" stroke-width="0.6"/>
+  <line x1="300" y1="320" x2="844" y2="320" stroke="#f1f5f9" stroke-width="0.6"/>
+  <text x="572" y="252" text-anchor="middle" class="t11b">O = P×V（M×N = 16×16）</text>
+  <text x="572" y="272" text-anchor="middle" class="t85 mut">m = 1..15（其余行淡化示意）</text>
+
+  <!-- 右侧注记 -->
+  <text x="860" y="140" class="t85b">row m=0：4 lane 铺满 16 列</text>
+  <rect x="860" y="150" width="12" height="12" fill="#bfdbfe" stroke="#3b82f6"/>
+  <text x="878" y="160" class="t85">lane 0（q=0）：列 0-3</text>
+  <rect x="860" y="170" width="12" height="12" fill="#fed7aa" stroke="#f97316"/>
+  <text x="878" y="180" class="t85">lane 1（q=1）：列 4-7</text>
+  <rect x="860" y="190" width="12" height="12" fill="#bbf7d0" stroke="#22c55e"/>
+  <text x="878" y="200" class="t85">lane 2（q=2）：列 8-11</text>
+  <rect x="860" y="210" width="12" height="12" fill="#e9d5ff" stroke="#a855f7"/>
+  <text x="878" y="220" class="t85">lane 3（q=3）：列 12-15</text>
+  <text x="860" y="246" class="t85 mut">每 lane 寄存器序 r0,r1,r2,r3</text>
+  <text x="860" y="262" class="t85 mut">实际落列 4q, 4q+2, 4q+1, 4q+3</text>
+  <text x="860" y="278" class="t85 rd">按列序看 = r0,r2,r1,r3：r1/r2 错位</text>
+  <text x="860" y="294" class="t85 or">橙弧 = r1↔r2 lane 内交换</text>
+
+  <!-- O 的 N 列刻度（实际 N 位置 0..15） -->
+  <text x="317" y="346" text-anchor="middle" class="m85 mut">0</text>
+  <text x="351" y="346" text-anchor="middle" class="m85 mut">1</text>
+  <text x="385" y="346" text-anchor="middle" class="m85 mut">2</text>
+  <text x="419" y="346" text-anchor="middle" class="m85 mut">3</text>
+  <text x="453" y="346" text-anchor="middle" class="m85 mut">4</text>
+  <text x="487" y="346" text-anchor="middle" class="m85 mut">5</text>
+  <text x="521" y="346" text-anchor="middle" class="m85 mut">6</text>
+  <text x="555" y="346" text-anchor="middle" class="m85 mut">7</text>
+  <text x="589" y="346" text-anchor="middle" class="m85 mut">8</text>
+  <text x="623" y="346" text-anchor="middle" class="m85 mut">9</text>
+  <text x="657" y="346" text-anchor="middle" class="m85 mut">10</text>
+  <text x="691" y="346" text-anchor="middle" class="m85 mut">11</text>
+  <text x="725" y="346" text-anchor="middle" class="m85 mut">12</text>
+  <text x="759" y="346" text-anchor="middle" class="m85 mut">13</text>
+  <text x="793" y="346" text-anchor="middle" class="m85 mut">14</text>
+  <text x="827" y="346" text-anchor="middle" class="m85 mut">15</text>
+  <text x="572" y="364" text-anchor="middle" class="t10 mut">N / headdim →</text>
+
+  <!-- 交换说明与点睛 -->
+  <text x="300" y="388" class="t85 or">permute_output_fp8：r1↔r2 lane 内交换（列 4q+1 ↔ 4q+2）；交换后寄存器序 r0,r1,r2,r3 = 列自然序 ✓</text>
+  <text x="300" y="410" class="t95">πn 错位：lane q 的 r0,r1,r2,r3 实际落在 N 列 4q, 4q+2, 4q+1, 4q+3；lane 内交换 r1↔r2（m+8 行 v1=1：d3↔d6 同理）即归位</text>
+  <text x="300" y="426" class="t95 mut">剩余跨 lane 部分由 Epilogue 的 EpiPerm 置换 CLayout 零搬运消化（cross-lane 仅文字注，不作视觉重点）</text>
+</svg>

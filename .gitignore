@@ -1,0 +1,11 @@
+# Publish only the reference corpus. Keep this file so the allowlist is versioned.
+/*
+!/.gitignore
+!/reference/
+!/reference/**
+
+# Local and generated noise.
+.DS_Store
+**/.DS_Store
+node_modules/
+.materialize-cache/

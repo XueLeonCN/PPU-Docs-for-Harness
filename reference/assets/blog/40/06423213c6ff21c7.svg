@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 680" width="1080" role="img" aria-label="图5 V 加载：一个 warp 的两个 16×32 块与 lane 0 元素分布">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; fill: #1e293b; }
+      .t15 { font-size: 15px; font-weight: 700; }
+      .t10 { font-size: 10.5px; }
+      .t95 { font-size: 9.5px; }
+      .t85 { font-size: 8.5px; }
+      .t85b { font-size: 8.5px; font-weight: 700; }
+      .m85 { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 8.5px; }
+      .mut { fill: #64748b; }
+      .bl { fill: #1d4ed8; } .gr { fill: #15803d; } .or { fill: #c2410c; } .pu { fill: #7e22ce; }
+    </style>
+    <pattern id="pa" x="190" y="124" width="24" height="13" patternUnits="userSpaceOnUse">
+      <path d="M0 0V13" stroke="#e2e8f0" stroke-width="0.6"/>
+      <path d="M0 0H24" stroke="#e2e8f0" stroke-width="0.6"/>
+    </pattern>
+    <pattern id="pb" x="190" y="372" width="24" height="13" patternUnits="userSpaceOnUse">
+      <path d="M0 0V13" stroke="#e2e8f0" stroke-width="0.6"/>
+      <path d="M0 0H24" stroke="#e2e8f0" stroke-width="0.6"/>
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="1080" height="680" fill="#ffffff"/>
+  <text x="20" y="30" class="t15">图5 · V 加载：一个 warp 的两个 16×32 块与 lane 0 元素分布</text>
+  <text x="20" y="48" class="t95 mut">以 mk=0、np=0、lane 0（q=lane%4=0，p=lane/4=0，t=0）为例；每 warp 每次 x4.b16.trans 读一个 16(kv)×32(headdim b8) 块，K 上两次加载覆盖 kv 0-31</text>
+
+  <!-- 外大框：V block 内两次加载覆盖的 32×32 b8 区域 -->
+  <rect x="70" y="58" width="980" height="534" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="150" y="76" class="t10" font-weight="600">V block 内：一个 warp 两次 x4.b16.trans 加载覆盖的 32(kv)×32(headdim b8) 区域</text>
+
+  <!-- ===== 加载 A：kv 0-15 → rA[0..3] ===== -->
+  <text x="190" y="98" class="t10" font-weight="600">加载 A · coord_h = 32mk = 0 · kv 0-15 → rA[0..3]</text>
+  <!-- 图例：lane 0 的 4 个寄存器 -->
+  <text x="692" y="98" class="t85 mut">lane 0 的寄存器：</text>
+  <rect x="788" y="90" width="9" height="9" rx="2" fill="#3b82f6"/><text x="801" y="98" class="t85">r0</text>
+  <rect x="824" y="90" width="9" height="9" rx="2" fill="#22c55e"/><text x="837" y="98" class="t85">r1</text>
+  <rect x="860" y="90" width="9" height="9" rx="2" fill="#f97316"/><text x="873" y="98" class="t85">r2</text>
+  <rect x="896" y="90" width="9" height="9" rx="2" fill="#a855f7"/><text x="909" y="98" class="t85">r3</text>
+  <text x="922" y="98" class="t85 mut">（各 2×2 = 4 个 b8）</text>
+  <!-- 列刻度 + 列轴 -->
+  <text x="182" y="116" text-anchor="end" class="t85 mut">列 = headdim(b8) →</text>
+  <text x="202" y="116" text-anchor="middle" class="m85 mut">0</text>
+  <text x="394" y="116" text-anchor="middle" class="m85 mut">8</text>
+  <text x="586" y="116" text-anchor="middle" class="m85 mut">16</text>
+  <text x="778" y="116" text-anchor="middle" class="m85 mut">24</text>
+  <text x="946" y="116" text-anchor="middle" class="m85 mut">31</text>
+  <!-- 行轴 + 行刻度（lane 0 持有的 kv 0/8 蓝色加粗） -->
+  <text x="158" y="228" text-anchor="middle" class="t85 mut" transform="rotate(-90 158 228)">行 = kv（0-15）</text>
+  <text x="180" y="134" text-anchor="end" class="t85b bl">0</text>
+  <text x="180" y="238" text-anchor="end" class="t85b bl">8</text>
+  <text x="180" y="329" text-anchor="end" class="t85 mut">15</text>
+  <!-- 网格 A（x=190..958, y=124..332；列宽 24 行高 13） -->
+  <rect x="190" y="124" width="768" height="208" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+  <rect x="190" y="124" width="768" height="208" fill="url(#pa)"/>
+  <!-- lane 0 · rA[0]（蓝）：kv{0,1} × hd{0,1} -->
+  <rect x="189" y="123" width="50" height="28" rx="3" fill="none" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="191" y="125" width="22" height="11" rx="2" fill="#3b82f6"/>
+  <rect x="215" y="125" width="22" height="11" rx="2" fill="#3b82f6"/>
+  <rect x="191" y="138" width="22" height="11" rx="2" fill="#3b82f6"/>
+  <rect x="215" y="138" width="22" height="11" rx="2" fill="#3b82f6"/>
+  <!-- lane 0 · rA[1]（绿）：kv{8,9} × hd{0,1} -->
+  <rect x="189" y="227" width="50" height="28" rx="3" fill="none" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="191" y="229" width="22" height="11" rx="2" fill="#22c55e"/>
+  <rect x="215" y="229" width="22" height="11" rx="2" fill="#22c55e"/>
+  <rect x="191" y="242" width="22" height="11" rx="2" fill="#22c55e"/>
+  <rect x="215" y="242" width="22" height="11" rx="2" fill="#22c55e"/>
+  <!-- lane 0 · rA[2]（橙）：kv{0,1} × hd{16,17} -->
+  <rect x="573" y="123" width="50" height="28" rx="3" fill="none" stroke="#f97316" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="575" y="125" width="22" height="11" rx="2" fill="#f97316"/>
+  <rect x="599" y="125" width="22" height="11" rx="2" fill="#f97316"/>
+  <rect x="575" y="138" width="22" height="11" rx="2" fill="#f97316"/>
+  <rect x="599" y="138" width="22" height="11" rx="2" fill="#f97316"/>
+  <!-- lane 0 · rA[3]（紫）：kv{8,9} × hd{16,17} -->
+  <rect x="573" y="227" width="50" height="28" rx="3" fill="none" stroke="#a855f7" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="575" y="229" width="22" height="11" rx="2" fill="#a855f7"/>
+  <rect x="599" y="229" width="22" height="11" rx="2" fill="#a855f7"/>
+  <rect x="575" y="242" width="22" height="11" rx="2" fill="#a855f7"/>
+  <rect x="599" y="242" width="22" height="11" rx="2" fill="#a855f7"/>
+
+  <!-- ===== 加载 B：kv 16-31 → rB[0..3]（同构，kv+16） ===== -->
+  <text x="190" y="356" class="t10" font-weight="600">加载 B · coord_h = 32mk+16 = 16 · kv 16-31 → rB[0..3]</text>
+  <text x="158" y="476" text-anchor="middle" class="t85 mut" transform="rotate(-90 158 476)">行 = kv（16-31）</text>
+  <text x="180" y="382" text-anchor="end" class="t85b bl">16</text>
+  <text x="180" y="486" text-anchor="end" class="t85b bl">24</text>
+  <text x="180" y="577" text-anchor="end" class="t85 mut">31</text>
+  <!-- 网格 B（x=190..958, y=372..580） -->
+  <rect x="190" y="372" width="768" height="208" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+  <rect x="190" y="372" width="768" height="208" fill="url(#pb)"/>
+  <!-- lane 0 · rB[0]（蓝）：kv{16,17} × hd{0,1} -->
+  <rect x="189" y="371" width="50" height="28" rx="3" fill="none" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="191" y="373" width="22" height="11" rx="2" fill="#3b82f6"/>
+  <rect x="215" y="373" width="22" height="11" rx="2" fill="#3b82f6"/>
+  <rect x="191" y="386" width="22" height="11" rx="2" fill="#3b82f6"/>
+  <rect x="215" y="386" width="22" height="11" rx="2" fill="#3b82f6"/>
+  <!-- lane 0 · rB[1]（绿）：kv{24,25} × hd{0,1} -->
+  <rect x="189" y="475" width="50" height="28" rx="3" fill="none" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="191" y="477" width="22" height="11" rx="2" fill="#22c55e"/>
+  <rect x="215" y="477" width="22" height="11" rx="2" fill="#22c55e"/>
+  <rect x="191" y="490" width="22" height="11" rx="2" fill="#22c55e"/>
+  <rect x="215" y="490" width="22" height="11" rx="2" fill="#22c55e"/>
+  <!-- lane 0 · rB[2]（橙）：kv{16,17} × hd{16,17} -->
+  <rect x="573" y="371" width="50" height="28" rx="3" fill="none" stroke="#f97316" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="575" y="373" width="22" height="11" rx="2" fill="#f97316"/>
+  <rect x="599" y="373" width="22" height="11" rx="2" fill="#f97316"/>
+  <rect x="575" y="386" width="22" height="11" rx="2" fill="#f97316"/>
+  <rect x="599" y="386" width="22" height="11" rx="2" fill="#f97316"/>
+  <!-- lane 0 · rB[3]（紫）：kv{24,25} × hd{16,17} -->
+  <rect x="573" y="475" width="50" height="28" rx="3" fill="none" stroke="#a855f7" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="575" y="477" width="22" height="11" rx="2" fill="#a855f7"/>
+  <rect x="599" y="477" width="22" height="11" rx="2" fill="#a855f7"/>
+  <rect x="575" y="490" width="22" height="11" rx="2" fill="#a855f7"/>
+  <rect x="599" y="490" width="22" height="11" rx="2" fill="#a855f7"/>
+
+  <!-- 说明 -->
+  <text x="140" y="608" class="t85 mut">每 lane 每次 x4.b16.trans 加载得 4 个寄存器 r0-r3，各持一个 2×2 对角块（2 kv × 2 hd）：r1 = kv+8，r2 = hd(t)+8，r3 = 两者兼有（与图 4 的 per-lane 布局一致）</text>
+  <text x="140" y="624" class="t85 mut">两块共 8 个寄存器 = rA[0..3] + rB[0..3]；lane 0 彩色块 = 其在每块持有的 16 个 b8，其余格属其他 lane（同构：q 定 kv 对，p 定 hd 列）</text>
+
+  <!-- 底部点睛 -->
+  <rect x="40" y="634" width="1000" height="40" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="56" y="652" class="t10 gr" font-weight="600">→ 4.3 节：byte_perm(rA[0],rA[1]) 取偶/奇 hd 列、byte_perm(rA[2],rA[3]) 同理，装配出 B fragment（r0+r1 配对、r2+r3 配对）</text>
+  <text x="56" y="668" class="t95">两次加载零重排直入寄存器对，与 4.3 节 byte_perm 装配（图 6）直接衔接</text>
+</svg>

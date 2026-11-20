@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 620" width="1080" role="img" aria-label="图4 ldmatrix.trans.b16 数据布局">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; fill: #1e293b; }
+      .t15 { font-size: 15px; font-weight: 700; }
+      .t11b { font-size: 11px; font-weight: 600; }
+      .t10 { font-size: 10.5px; }
+      .t95 { font-size: 9.5px; }
+      .t85 { font-size: 8.5px; }
+      .m85 { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 8.5px; }
+      .mut { fill: #64748b; }
+      .bl { fill: #1d4ed8; } .or { fill: #c2410c; } .gr { fill: #15803d; } .pu { fill: #7e22ce; }
+    </style>
+    <marker id="aB" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0L7 3.5L0 7z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="aG" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0L7 3.5L0 7z" fill="#15803d"/>
+    </marker>
+    <marker id="aO" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0L7 3.5L0 7z" fill="#c2410c"/>
+    </marker>
+    <marker id="aP" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0L7 3.5L0 7z" fill="#7e22ce"/>
+    </marker>
+    <pattern id="vg" x="60" y="110" width="32" height="20" patternUnits="userSpaceOnUse">
+      <path d="M16 0V20" stroke="#e2e8f0" stroke-width="0.6"/>
+      <path d="M0 0H32" stroke="#e2e8f0" stroke-width="0.6"/>
+      <path d="M0 0V20" stroke="#94a3b8" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="1080" height="620" fill="#ffffff"/>
+  <text x="20" y="30" class="t15">图4 · ldmatrix.trans.b16（x4）数据布局：每 lane 的 r0-r3 持有哪些 V 元素</text>
+  <text x="20" y="48" class="t95 mut">一次 x4.b16.trans 覆盖 16 kv 行 × 16 b16 列（= 32 个 b8 headdim）；lane 坐标 q=lane%4，p=lane/4，t = ic·CUBE_W + w0 + p</text>
+
+  <!-- ===== 左：V tile 网格 ===== -->
+  <text x="60" y="84" class="t11b bl">V tile（kv 行 × headdim b8 列）</text>
+  <text x="76" y="102" text-anchor="middle" class="t85 mut">b16</text>
+  <text x="332" y="102" text-anchor="middle" class="t85 mut">b16#8</text>
+  <rect x="60" y="110" width="512" height="320" fill="url(#vg)" stroke="#64748b" stroke-width="1.2"/>
+  <line x1="60" y1="270" x2="572" y2="270" stroke="#64748b" stroke-width="1.2" stroke-dasharray="4 2"/>
+  <line x1="316" y1="110" x2="316" y2="430" stroke="#64748b" stroke-width="1.2" stroke-dasharray="4 2"/>
+  <text x="578" y="274" class="t85 mut">kv+8</text>
+
+  <text x="54" y="124" text-anchor="end" class="m85 mut">kv0</text>
+  <text x="54" y="144" text-anchor="end" class="m85 mut">kv1</text>
+  <text x="54" y="284" text-anchor="end" class="m85 mut">kv8</text>
+  <text x="54" y="304" text-anchor="end" class="m85 mut">kv9</text>
+
+  <!-- lane0（q=0, p=0, t=0）的 r0-r3 源格 -->
+  <rect x="60" y="110" width="32" height="40" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="76" y="134" text-anchor="middle" class="t10 bl" font-weight="700">r0</text>
+  <rect x="60" y="270" width="32" height="40" fill="#bbf7d0" stroke="#15803d" stroke-width="2"/>
+  <text x="76" y="294" text-anchor="middle" class="t10 gr" font-weight="700">r1</text>
+  <rect x="316" y="110" width="32" height="40" fill="#fed7aa" stroke="#c2410c" stroke-width="2"/>
+  <text x="332" y="134" text-anchor="middle" class="t10 or" font-weight="700">r2</text>
+  <rect x="316" y="270" width="32" height="40" fill="#e9d5ff" stroke="#7e22ce" stroke-width="2"/>
+  <text x="332" y="294" text-anchor="middle" class="t10 pu" font-weight="700">r3</text>
+
+  <text x="76" y="446" text-anchor="middle" class="t85 mut">hd0-1</text>
+  <text x="332" y="446" text-anchor="middle" class="t85 mut">hd16-17</text>
+  <text x="420" y="446" class="t85 mut">▲ 虚线 = kv+8 / t+8（hd+16）分界；粗竖线 = b16 边界（相邻 2 个 b8 = 1 个 b16）</text>
+  <text x="60" y="464" class="t85 mut">高亮 = lane0（q=0, p=0, w0=0 → t=0）的 4 个寄存器源格；x4.b16.trans 窗口 = 整幅 16 kv × 32 b8</text>
+
+  <!-- ===== 右：4 个寄存器盒（空间位置对应左图） ===== -->
+  <rect x="640" y="110" width="200" height="116" rx="8" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="652" y="130" class="t11b bl">r0 · 2×2 对角块</text>
+  <rect x="650" y="142" width="88" height="34" fill="#ffffff" stroke="#bfdbfe"/><text x="694" y="163" text-anchor="middle" class="m85">V[kv0][hd0]</text>
+  <rect x="744" y="142" width="88" height="34" fill="#ffffff" stroke="#bfdbfe"/><text x="788" y="163" text-anchor="middle" class="m85">V[kv0][hd1]</text>
+  <rect x="650" y="180" width="88" height="34" fill="#ffffff" stroke="#bfdbfe"/><text x="694" y="201" text-anchor="middle" class="m85">V[kv1][hd0]</text>
+  <rect x="744" y="180" width="88" height="34" fill="#ffffff" stroke="#bfdbfe"/><text x="788" y="201" text-anchor="middle" class="m85">V[kv1][hd1]</text>
+
+  <rect x="852" y="110" width="200" height="116" rx="8" fill="#fff7ed" stroke="#fdba74"/>
+  <text x="864" y="130" class="t11b or">r2 = r0 的 t+8 平移（hd+16）</text>
+  <rect x="862" y="142" width="88" height="34" fill="#ffffff" stroke="#fed7aa"/><text x="906" y="163" text-anchor="middle" class="m85">V[kv0][hd16]</text>
+  <rect x="956" y="142" width="88" height="34" fill="#ffffff" stroke="#fed7aa"/><text x="1000" y="163" text-anchor="middle" class="m85">V[kv0][hd17]</text>
+  <rect x="862" y="180" width="88" height="34" fill="#ffffff" stroke="#fed7aa"/><text x="906" y="201" text-anchor="middle" class="m85">V[kv1][hd16]</text>
+  <rect x="956" y="180" width="88" height="34" fill="#ffffff" stroke="#fed7aa"/><text x="1000" y="201" text-anchor="middle" class="m85">V[kv1][hd17]</text>
+
+  <rect x="640" y="240" width="200" height="116" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="652" y="260" class="t11b gr">r1 = r0 的 kv+8 平移</text>
+  <rect x="650" y="272" width="88" height="34" fill="#ffffff" stroke="#bbf7d0"/><text x="694" y="293" text-anchor="middle" class="m85">V[kv8][hd0]</text>
+  <rect x="744" y="272" width="88" height="34" fill="#ffffff" stroke="#bbf7d0"/><text x="788" y="293" text-anchor="middle" class="m85">V[kv8][hd1]</text>
+  <rect x="650" y="310" width="88" height="34" fill="#ffffff" stroke="#bbf7d0"/><text x="694" y="331" text-anchor="middle" class="m85">V[kv9][hd0]</text>
+  <rect x="744" y="310" width="88" height="34" fill="#ffffff" stroke="#bbf7d0"/><text x="788" y="331" text-anchor="middle" class="m85">V[kv9][hd1]</text>
+
+  <rect x="852" y="240" width="200" height="116" rx="8" fill="#faf5ff" stroke="#d8b4fe"/>
+  <text x="864" y="260" class="t11b pu">r3 = kv+8 且 t+8</text>
+  <rect x="862" y="272" width="88" height="34" fill="#ffffff" stroke="#e9d5ff"/><text x="906" y="293" text-anchor="middle" class="m85">V[kv8][hd16]</text>
+  <rect x="956" y="272" width="88" height="34" fill="#ffffff" stroke="#e9d5ff"/><text x="1000" y="293" text-anchor="middle" class="m85">V[kv8][hd17]</text>
+  <rect x="862" y="310" width="88" height="34" fill="#ffffff" stroke="#e9d5ff"/><text x="906" y="331" text-anchor="middle" class="m85">V[kv9][hd16]</text>
+  <rect x="956" y="310" width="88" height="34" fill="#ffffff" stroke="#e9d5ff"/><text x="1000" y="331" text-anchor="middle" class="m85">V[kv9][hd17]</text>
+
+  <text x="640" y="384" class="t95">r0 / r1 → 偶 n-tile；r2 / r3 → 奇 n-tile</text>
+  <text x="640" y="404" class="t85 mut">每 lane 4 寄存器 × 4B = 16B；一般 lane：kv0+2q 起、t 含 w0+p</text>
+
+  <!-- ===== 底部：点睛结论 ===== -->
+  <rect x="40" y="478" width="1000" height="52" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="56" y="498" class="t10 gr" font-weight="600">πk 天然对齐的根源：每寄存器 = 2 kv × 2 hd 的 2×2 块</text>
+  <text x="56" y="516" class="t95">kv（K / 归约轴）的两元素 2q, 2q+1 在寄存器内相邻 → byte_perm 后即可凑出 MMA 的 k 序（A(P) / B(V) 逐槽一致，归约和不变）✓</text>
+
+  <rect x="40" y="540" width="1000" height="52" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="56" y="560" class="t10 or" font-weight="600">πn 偶奇错位的根源：hd（N / 输出轴）分裂为偶列 2t 与奇列 2t+1</text>
+  <text x="56" y="578" class="t95">→ 4.3 节用 byte_perm 从 r0/r1（及 r2/r3）分离偶列（0x6420）/ 奇列（0x7531）装配 B fragment；输出侧两段修正见 4.5 节与图 7</text>
+  <!-- 源格 → 寄存器盒 箭头（最顶层：肘形走线避让高亮格 / 文字 / 对侧盒） -->
+  <g>
+    <path d="M92,132 V168 H634" fill="none" stroke="#1d4ed8" stroke-width="1.5" marker-end="url(#aB)"/>
+    <path d="M350,132 V230 H846 V168" fill="none" stroke="#c2410c" stroke-width="1.5" marker-end="url(#aO)"/>
+    <path d="M92,292 V330 H634" fill="none" stroke="#15803d" stroke-width="1.5" marker-end="url(#aG)"/>
+    <path d="M350,292 V237 H846 V298" fill="none" stroke="#7e22ce" stroke-width="1.5" marker-end="url(#aP)"/>
+  </g>
+</svg>
