@@ -312,48 +312,48 @@ optimization/<operator>/
 
 ## 本地文档快速索引
 
-完整摘要见[官方资料目录](../../catalog.md)，机器索引见[manifest.json](../../manifest.json)。下列路径均相对本 SKILL 所在目录。
+完整摘要见[官方资料目录](reference/catalog.md)，机器索引见[manifest.json](reference/manifest.json)。下列路径均相对本 SKILL 所在目录。
 
 ### 硬件与编程基础
 
 | 主题 | 关键内容 | 必读文档 |
 | --- | --- | --- |
-| 平头哥真武 M890 架构白皮书 | 10 个计算引擎、39 个计算单元、TSM、L1/L2/LLC、AIU、TFU、PCIe 5.0、ICN、SAIL 软件栈 | [阅读原文](../../architecture/m890-architecture-whitepaper.md) |
-| T-Head SAIL HGGC 编程指南 | Host 与 Device、Grid/Block/Warp、SIMT、内存、流与事件、图、协作组、异步屏障 | [阅读原文](../../programming-guide/01-hggc-programming-guide.md) |
-| T-Head SAIL TIX 编程指南 | ppu001 与 ppu0015、`tc01` 与 `tc02`、特殊寄存器、访存、同步、矩阵指令 | [阅读原文](../../programming-guide/02-tix-programming-guide.md) |
-| T-Head SAIL HGGC 示例程序 | CMake、ppu_10 与 ppu_15、AIU、Tensor Cell GEMM、图、`test_args.json` | [阅读原文](../../programming-guide/03-hggc-samples.md) |
-| T-Head SAIL HGGC 算子性能优化实战指南 | block 与 grid、occupancy、访存、group conflict、指令、寄存器溢出、Asight | [阅读原文](../../programming-guide/04-hggc-kernel-optimization.md) |
+| 平头哥真武 M890 架构白皮书 | 10 个计算引擎、39 个计算单元、TSM、L1/L2/LLC、AIU、TFU、PCIe 5.0、ICN、SAIL 软件栈 | [阅读原文](reference/architecture/m890-architecture-whitepaper.md) |
+| T-Head SAIL HGGC 编程指南 | Host 与 Device、Grid/Block/Warp、SIMT、内存、流与事件、图、协作组、异步屏障 | [阅读原文](reference/programming-guide/01-hggc-programming-guide.md) |
+| T-Head SAIL TIX 编程指南 | ppu001 与 ppu0015、`tc01` 与 `tc02`、特殊寄存器、访存、同步、矩阵指令 | [阅读原文](reference/programming-guide/02-tix-programming-guide.md) |
+| T-Head SAIL HGGC 示例程序 | CMake、ppu_10 与 ppu_15、AIU、Tensor Cell GEMM、图、`test_args.json` | [阅读原文](reference/programming-guide/03-hggc-samples.md) |
+| T-Head SAIL HGGC 算子性能优化实战指南 | block 与 grid、occupancy、访存、group conflict、指令、寄存器溢出、Asight | [阅读原文](reference/programming-guide/04-hggc-kernel-optimization.md) |
 
 ### 算子实现与优化实践参考
 
 | 原文主题 | 关键内容 | 必读文档 |
 | --- | --- | --- |
-| 真武 M890 上 FP8 blockwise GEMM 的实现与优化 | K128 与 K32 promotion、双累加器、warp interleaving、scale 搬运 | [阅读原文](../../blog/2026-11-16-fp8-blockwise-gemm.md) |
-| 扬长避短：W4A8 在真武 M890 上的实现详解 | MXFP4 权重、E4M3 激活、FP4 单位阵反量化、E4M3×E5M2 | [阅读原文](../../blog/2026-10-22-w4a8-m890.md) |
-| DeepGemm (PPU) W4A16 MXFP4 GEMM 实现详解—— 寄存器内反量化的两条路线 | VALU 与 FP4 MMA 两条反量化路线、指令成本与边界 | [阅读原文](../../blog/2026-09-29-deepgemm-w4a16-mxfp4.md) |
-| BF16 DenseGemm Memory Bound 优化：把 tile 自由度花在「凑整轮」上 | memory-bound、wave 均衡、persistent、NoTsm、WarpOnK | [阅读原文](../../blog/2026-09-28-bf16-densegemm-memory-bound.md) |
-| FP8 Flash Attention 性能优化简介 | V 转置困境、寄存器转置、V 直读、epilogue layout | [阅读原文](../../blog/2026-09-29-fp8-flash-attention.md) |
-| FlashMLA2 的 Warp Interleave：从双 Warpgroup 到 WI + Cross cut | 双 Warpgroup、warp interleave、共同 softmax、cross-cut、三缓冲 | [阅读原文](../../blog/2026-09-29-flashmla2-warp-interleave.md) |
-| group conflict 在 FlashMLA 上的优化 | TSM 编址、group hash、PU 仲裁、swizzle 和冲突消除 | [阅读原文](../../blog/2026-09-20-flashmla-group-conflict.md) |
-| 从 Nopad 到 Fused：TP 场景下的 PPU FusedMoE 设计与实践 | Nopad、Hybrid、索引映射、WarpOrdered、4-Kernel 确定性 | [阅读原文](../../blog/2026-09-29-fused-moe-hybrid.md) |
-| PPU Triton 编程指南 | `tl.aiu_load`、block pointer、descriptor、GEMM、FA 与 MoE tiling | [阅读原文](../../blog/2026-09-29-ppu-triton-guide.md) |
+| 真武 M890 上 FP8 blockwise GEMM 的实现与优化 | K128 与 K32 promotion、双累加器、warp interleaving、scale 搬运 | [阅读原文](reference/blog/2026-11-16-fp8-blockwise-gemm.md) |
+| 扬长避短：W4A8 在真武 M890 上的实现详解 | MXFP4 权重、E4M3 激活、FP4 单位阵反量化、E4M3×E5M2 | [阅读原文](reference/blog/2026-10-22-w4a8-m890.md) |
+| DeepGemm (PPU) W4A16 MXFP4 GEMM 实现详解—— 寄存器内反量化的两条路线 | VALU 与 FP4 MMA 两条反量化路线、指令成本与边界 | [阅读原文](reference/blog/2026-09-29-deepgemm-w4a16-mxfp4.md) |
+| BF16 DenseGemm Memory Bound 优化：把 tile 自由度花在「凑整轮」上 | memory-bound、wave 均衡、persistent、NoTsm、WarpOnK | [阅读原文](reference/blog/2026-09-28-bf16-densegemm-memory-bound.md) |
+| FP8 Flash Attention 性能优化简介 | V 转置困境、寄存器转置、V 直读、epilogue layout | [阅读原文](reference/blog/2026-09-29-fp8-flash-attention.md) |
+| FlashMLA2 的 Warp Interleave：从双 Warpgroup 到 WI + Cross cut | 双 Warpgroup、warp interleave、共同 softmax、cross-cut、三缓冲 | [阅读原文](reference/blog/2026-09-29-flashmla2-warp-interleave.md) |
+| group conflict 在 FlashMLA 上的优化 | TSM 编址、group hash、PU 仲裁、swizzle 和冲突消除 | [阅读原文](reference/blog/2026-09-20-flashmla-group-conflict.md) |
+| 从 Nopad 到 Fused：TP 场景下的 PPU FusedMoE 设计与实践 | Nopad、Hybrid、索引映射、WarpOrdered、4-Kernel 确定性 | [阅读原文](reference/blog/2026-09-29-fused-moe-hybrid.md) |
+| PPU Triton 编程指南 | `tl.aiu_load`、block pointer、descriptor、GEMM、FA 与 MoE tiling | [阅读原文](reference/blog/2026-09-29-ppu-triton-guide.md) |
 
 ### 编译与构建实践参考
 
 | 主题 | 关键内容 | 必读文档 |
 | --- | --- | --- |
-| hgcc 预定义宏使用介绍 | `__HGGCCC__`、`__HGGC_ARCH__`、版本、RDC、Debug 宏和静默风险 | [阅读原文](../../blog/2026-09-21-hgcc-predefined-macros.md) |
-| hgcc 分离编译（RDC 模式）使用介绍 | `-rdc`、`-dlto`、跨翻译单元、设备静态库、链接错误 | [阅读原文](../../blog/2026-09-21-hgcc-rdc.md) |
-| 性能持平，编译提速 7.7×：从 CuTe 到 CuTe Free 的一次编译时间优化 | 模板实例化与中间表示成本、逐层降级、产物等价验证 | [阅读原文](../../blog/2026-09-29-cute-to-cute-free.md) |
+| hgcc 预定义宏使用介绍 | `__HGGCCC__`、`__HGGC_ARCH__`、版本、RDC、Debug 宏和静默风险 | [阅读原文](reference/blog/2026-09-21-hgcc-predefined-macros.md) |
+| hgcc 分离编译（RDC 模式）使用介绍 | `-rdc`、`-dlto`、跨翻译单元、设备静态库、链接错误 | [阅读原文](reference/blog/2026-09-21-hgcc-rdc.md) |
+| 性能持平，编译提速 7.7×：从 CuTe 到 CuTe Free 的一次编译时间优化 | 模板实例化与中间表示成本、逐层降级、产物等价验证 | [阅读原文](reference/blog/2026-09-29-cute-to-cute-free.md) |
 
 ### 性能采集、统计与智能体分析
 
 | 主题 | 关键内容 | 必读文档 |
 | --- | --- | --- |
-| 用 Asight Systems 分析大型 asys 报告：按需加载、过滤时间线与区间统计 | Open Advanced、时间线过滤、Group View、区间统计 | [阅读原文](../../blog/2026-11-05-asight-large-report.md) |
-| 用 asys 统计系统高效分析性能报告 | `stats`、`compare`、`aggregate`、通信对齐和多报告汇总 | [阅读原文](../../blog/2026-09-30-asys-stats.md) |
-| 如何控制 asys 跟踪采集的报告大小 | Profiler API、HGTX 与 NVTX、Rank 过滤、轮转、Attach | [阅读原文](../../blog/2026-09-29-asys-report-size.md) |
-| Asight Systems MCP 使用实践：通过 AI agent 分析 asys 报告 | Asight MCP、规则选择、跨平台对比、Insight、ACU 命令 | [阅读原文](../../blog/2026-09-29-asight-mcp-agent.md) |
+| 用 Asight Systems 分析大型 asys 报告：按需加载、过滤时间线与区间统计 | Open Advanced、时间线过滤、Group View、区间统计 | [阅读原文](reference/blog/2026-11-05-asight-large-report.md) |
+| 用 asys 统计系统高效分析性能报告 | `stats`、`compare`、`aggregate`、通信对齐和多报告汇总 | [阅读原文](reference/blog/2026-09-30-asys-stats.md) |
+| 如何控制 asys 跟踪采集的报告大小 | Profiler API、HGTX 与 NVTX、Rank 过滤、轮转、Attach | [阅读原文](reference/blog/2026-09-29-asys-report-size.md) |
+| Asight Systems MCP 使用实践：通过 AI agent 分析 asys 报告 | Asight MCP、规则选择、跨平台对比、Insight、ACU 命令 | [阅读原文](reference/blog/2026-09-29-asight-mcp-agent.md) |
 
 ## 完成标准
 

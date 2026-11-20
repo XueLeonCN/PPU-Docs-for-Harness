@@ -1,6 +1,9 @@
-# Publish only the reference corpus. Keep this file so the allowlist is versioned.
+# Publish the reference corpus and root-level skill metadata.
 /*
 !/.gitignore
+!/SKILL.md
+!/agents/
+!/agents/**
 !/reference/
 !/reference/**
 
