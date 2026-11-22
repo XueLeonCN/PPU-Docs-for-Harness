@@ -370,12 +370,13 @@ M890 的验证集更强调：
 ## 八、对 Harness 的直接启示
 
 1. 架构识别必须先于算子生成：`__HGGC_ARCH__ == 100` 与 `150` 需要生成不同指令和布局。
-2. 优化 M890 时优先评估 FP8/FP4、AIU 2D copy、NoTsm epilogue、D256 大 tile 和 warp-interleaving。
-3. 优化 810E 时优先评估 INT8、A8W4、GEMV/Direct、SIMT split-K 和 TSM epilogue。
-4. 两款芯片都必须把 accumulator、operand 和 scale fragment 的 VREG 预算纳入 tile 选择。
-5. 不能只按照一个 CU 数量估算 810E 性能：先查询通用 CU 总数和 Tensor CU 数，再按目标库的预算接口解释。参考配置下 `n=10` 表示 Tensor 10 / SIMT 54，而不是“Tensor 10 + 额外 SIMT 奖励”。
-6. 非对齐 shape 必须考虑 TSM 非自动清零、OOB 清零、输出对齐和 TSM 重排成本。
-7. M890 出现 group conflict 时，适当降低 occupancy 可能是正确优化。
+2. 优化 M890 时优先评估 AIU 2D copy、NoTsm epilogue、D256 大 tile 和 warp-interleaving。
+3. 优化 810E 时优先评估 GEMV/Direct、SIMT split-K 和 TSM epilogue。
+4. 在允许低精度量化的场景（比如LLM推理），在 810E 上优先评估 INT8，在 M890 上优先评估 FP8 和 mxFP4。
+5. 两款芯片都必须把 accumulator、operand 和 scale fragment 的 VREG 预算纳入 tile 选择。
+6. 不能只按照一个 CU 数量估算 810E 性能：先查询通用 CU 总数和 Tensor CU 数，再按目标库的预算接口解释。参考配置下 `n=10` 表示 Tensor 10 / SIMT 54，而不是“Tensor 10 + 额外 SIMT 奖励”。
+7. 非对齐 shape 必须考虑 TSM 非自动清零、OOB 清零、输出对齐和 TSM 重排成本。
+8. M890 出现 group conflict 时，适当降低 occupancy 可能是正确优化。
 
 ## 九、证据等级与限制
 
