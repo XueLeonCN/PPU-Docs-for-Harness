@@ -33,6 +33,28 @@ description: "面向真武 PPU（M890、810E 等）的通用算子开发与优�
 5. 每次实验只改变一个主要假设。保留基线、候选源码、编译参数、性能分析记录和测试结果。
 6. 不得未经确认执行高成本的全量集群扫描、长时间生产压测或会覆盖用户现有最佳版本的修改。
 
+## M890 与 810E 架构对照基线
+
+| 项目 | M890 | 810E |
+| --- | --- | --- |
+| 软件架构 | `ppu0015`、`ppu_15`、`PPU0015` | `ppu001`、`ppu_10`、`PPU0010` |
+| CU 资源 | 白皮书为 39 CU；DeepGEMM 将常规 CU 数直接作为 Tensor GEMM 预算 | 参考配置为 64 个通用 CU；官方驱动另报 Tensor CU 数（参考值 20），DeepGEMM 自动预算为 20 Tensor / 64 SIMT |
+| Tensor Cell | `tc02`，支持 FP16、BF16、INT8，并增加 FP8、MXFP4 | `tc01`，支持 FP16、BF16、TF32、F32、INT8 |
+| 典型矩阵原子 | FP16/BF16 `16×16×16`、FP8 `16×16×32`、FP4 `16×16×64` | FP16/BF16 `16×16×16`、INT8 `16×16×32` |
+| AIU | 2D tile、硬件 swizzle、LLC 提示和更丰富的 TSM 地址 | 基础 bulk tensor，接口和地址状态更简单 |
+| 默认输出路径 | DeepGEMM 优先从 VREG 转换后直接写全局内存 | 当前 DeepGEMM 主要经 TSM Epilogue 重排后写回 |
+| 主要优势 | FP8、FP4、W4A8、NVFP4、大 tile、低精度 Attention/MoE | INT8、INT8×INT4、GEMV、窄输出、INT8 indexer |
+
+两款芯片共同的实现约束：
+
+- warp 为 32 线程；每 CU 在 DeepGEMM 占用率模型中被划分为 8 个 WE。
+- Tensor accumulator、双缓冲 A/B、scale fragment 和地址寄存器都计入 VREG 预算。
+- AIU 负责主要 global→TSM 批量搬运，TSM 提供硬件 swizzle 和 MMA fragment 读取。
+- PPU shared memory 不保证自动清零，非对齐 tile 必须显式处理越界区域。
+- M890 的 hdim128/256 Attention backward 通过 128KiB shared-memory 限流降低 group conflict，不能把高 occupancy 视为无条件更优。
+
+详细分析需要参考 [M890 与 810E 架构代码对照分析](reference/architecture/m890-810e-architecture-code-analysis.md)。
+
 ## 第一步：官方开源代码优先侦察
 
 这是每轮算子工作的必选阶段，不是背景阅读。
@@ -206,7 +228,7 @@ Baseline 至少记录：
 
 ### 系统级性能分析
 
-如果需要进行系统级性能分析，使用 Asight Systems（asys）工具；如果需要进行算子级性能分析，直接使用 Asight Compute（acu）工具。
+如果需要进行系统级性能分析，使用 Asight Systems（asys）工具；如果需要进行算子级性能分析，使用 Asight Compute（acu）工具。
 
 使用 asys 工具采集时优先限制范围：
 
@@ -323,6 +345,7 @@ optimization/<operator>/
 | T-Head SAIL TIX 编程指南 | ppu001 与 ppu0015、`tc01` 与 `tc02`、特殊寄存器、访存、同步、矩阵指令 | [阅读原文](reference/programming-guide/02-tix-programming-guide.md) |
 | T-Head SAIL HGGC 示例程序 | CMake、ppu_10 与 ppu_15、AIU、Tensor Cell GEMM、图、`test_args.json` | [阅读原文](reference/programming-guide/03-hggc-samples.md) |
 | T-Head SAIL HGGC 算子性能优化实战指南 | block 与 grid、occupancy、访存、group conflict、指令、寄存器溢出、Asight | [阅读原文](reference/programming-guide/04-hggc-kernel-optimization.md) |
+| 真武 M890 与 810E 架构代码对照分析 | `tc01/tc02`、AIU/TSM、8 WE、VREG、Tensor/SIMT 预算、与上游 GPU 实现差异 | [阅读分析](reference/architecture/m890-810e-architecture-code-analysis.md) |
 
 ### 算子实现与优化实践参考
 

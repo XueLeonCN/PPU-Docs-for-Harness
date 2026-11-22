@@ -15,7 +15,7 @@ reference/
 
 - `catalog.md`：按主题组织的详细摘要、关键内容和适用问题。
 - `manifest.json`：机器可读索引，包含标题、路径、来源 URL、标签和完整性哈希。
-- `architecture/`：官方架构白皮书。
+- `architecture/`：官方架构白皮书，以及 M890/810E 架构代码对照分析。
 - `programming-guide/`：官方 HGGC/TIX 编程与优化指南。
 - `blog/`：官方技术博客。
 - `assets/`：博客内嵌图表的本地副本。

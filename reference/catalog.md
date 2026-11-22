@@ -4,7 +4,7 @@
 
 ## 1. 硬件与编程基础
 
-M890 芯片架构、HGGC 和 TIX 指令语义相关内容。
+先建立 M890 硬件、HGGC 线程/内存/异步模型和 TIX 指令语义，再进入具体算子。
 
 ### [平头哥真武 M890 架构白皮书](architecture/m890-architecture-whitepaper.md)
 
@@ -143,9 +143,41 @@ TIX 是位于高级语言和物理 ISA 之间的 PPU 虚拟指令集，可通过
 
 **检索标签**：`kernel-optimization`、`occupancy`、`TLP`、`ILP`、`launch-bounds`、`coalesced-access`、`bank-conflict`、`group-conflict`、`cache-policy`、`AIU`、`tensor-core`、`register-spill`、`Asight`。
 
-## 2. 算子实现与优化实践参考
+## 2. 架构代码对照分析
 
-算子实现与优化相关博客。
+整理 M890 与 810E 在官方算子实现中的实际架构差异，以及它们与上游 GPU 实现的对应关系。
+
+### [真武 M890 与 810E 架构代码对照分析](architecture/m890-810e-architecture-code-analysis.md)
+
+**整理分析**：非官方原文；分析日期 2026-11-22；依据官方仓库固定 commit 和本目录官方文档。
+
+**文档总结**
+
+从 Flash Attention for SAIL、DeepGEMM for SAIL 及对应上游实现中提取两代真武 PPU 的实际执行模型。分析表明 M890（ppu0015/tc02）以 39 个 CU、FP8/MXFP4 Tensor Cell、增强 AIU、NoTsm epilogue 和大 tile 为主；810E（ppu001/tc01）的参考配置暴露 64 个通用 CU，并另行上报 Tensor CU 数（参考值 20），官方库据此维护独立 Tensor/SIMT 预算，并更侧重 INT8、INT8×INT4、GEMV 与 TSM epilogue。
+
+**关键内容**
+
+- 两款芯片都以 32 线程 warp、SIMT 调度和 Tensor Cell 为核心；Tensor 原子固定为 16×16 输出面，K 随 dtype 从 16 增至 32 或 64。
+- DeepGEMM 将每 CU 建模为 8 个 WE，并把 ACC、A/B 双缓冲、scale fragment 和地址寄存器全部纳入 WE/VREG occupancy。
+- AIU 负责 global→TSM 批量搬运，TSM 提供硬件 swizzle 和 fragment load；这不是 NVIDIA TMA 与普通 shared memory 的直接复刻。
+- M890 的 tc02 增加 FP8 和 MXFP4，支持更强的 AIU 2D tile、128KiB shared-memory 限流控制和 VREG 直写全局内存。
+- 810E 的 tc01 以 FP16/BF16/TF32/F32/INT8 为主，代码覆盖 A8W4、INT8 indexer、GEMV 和 SIMT split-K，默认 GEMM 经 TSM epilogue。
+- 810E 参考配置的自动预算为 20 Tensor / 64 SIMT；设置 `1–20` 时 Tensor 跟随设置值、SIMT 为 `44 + 设置值`，设置 `21–64` 时 Tensor 封顶 20、SIMT 跟随设置值。调低 1–20 档会同时缩小两类预算，不是把 Tensor 资源转给 SIMT。
+
+**适用问题**
+
+- 判断某项 kernel、指令或 epilogue 设计适用于 M890 还是 810E。
+- 为双架构 Harness 生成正确的编译条件、tile 策略和资源预算。
+- 在 810E 上分别查询通用 CU 与 Tensor CU 属性，并正确解释 DeepGEMM 的 Tensor/SIMT 预算设置。
+- 区分原版 GPU 的 TMA/GMMA/UMMA/TMEM 语义与真武 AIU/TSM/Tensor Cell 语义。
+- 定位 FP8、FP4、INT8、A8W4、GEMV 和 indexer 的平台专属路径。
+- 复核代码分析结论中的 commit、源文件、结构和限制。
+
+**检索标签**：`M890`、`810E`、`PPU0015`、`PPU0010`、`tc02`、`tc01`、`AIU`、`TSM`、`VREG`、`Tensor-Cell`、`Tensor-CU`、`SIMT-budget`、`architecture-comparison`。
+
+## 3. GEMM、Attention、MoE 与量化
+
+按算子类型汇总可直接指导 tile、数据流、寄存器、同步和分析口径的案例。
 
 ### [真武 M890 上 FP8 blockwise GEMM 的实现与优化](blog/2026-11-16-fp8-blockwise-gemm.md)
 
@@ -387,9 +419,9 @@ TIX 是位于高级语言和物理 ISA 之间的 PPU 虚拟指令集，可通过
 
 **检索标签**：`Triton`、`PPU`、`tl.aiu_load`、`block-pointer`、`tensor-descriptor`、`tiling`、`GEMM`、`Flash-Attention`、`FusedMoE`、`AIU`。
 
-## 3. 编译与构建实践参考
+## 4. 编译与构建
 
-编译优化相关技术博客。
+覆盖源码生成、架构条件编译、多文件设备链接、编译时间和正确性风险。
 
 ### [性能持平，编译提速 7.7×：从 CuTe 到 CuTe Free 的一次编译时间优化](blog/2026-09-29-cute-to-cute-free.md)
 
@@ -472,9 +504,9 @@ TIX 是位于高级语言和物理 ISA 之间的 PPU 虚拟指令集，可通过
 
 **检索标签**：`hgcc`、`RDC`、`separate-compilation`、`device-link`、`dlto`、`ELF`、`cross-TU`、`device-global`、`static-library`、`troubleshooting`。
 
-## 4. 性能采集、统计与 Agent 分析
+## 5. 性能采集、统计与 Agent 分析
 
-性能分析相关技术博客。
+从控制报告大小开始，逐步进入按需查看、规则统计、跨报告对比和 Agent 自动下钻。
 
 ### [用 Asight Systems 分析大型 asys 报告：按需加载、过滤时间线与区间统计](blog/2026-11-05-asight-large-report.md)
 

@@ -33,6 +33,55 @@
     ]
   },
   "integrity": "source_sha256 对应网站接口返回的原始 mdContent/htmlContent/indexContent；output_sha256 对应本次生成的 Markdown 文件（含来源 frontmatter）。",
+  "derived_documents": [
+    {
+      "id": "architecture-analysis-m890-810e",
+      "title": "真武 M890 与 810E 架构代码对照分析",
+      "path": "architecture/m890-810e-architecture-code-analysis.md",
+      "source_authority": "derived",
+      "publisher": "本知识库",
+      "analysis_date": "2026-11-22",
+      "source_commits": {
+        "flash_attention_for_sail": "380f519ee881ce5e27e9a46b85a9495b8ab6cbd5",
+        "deepgemm_for_sail": "2cc83ab849cf0804ef4a1791e7cbe13736ddbf55",
+        "flash_attention_upstream": "7321879fde54f09ed94f7f6ce9377e2f4cf1fac0",
+        "deepgemm_upstream": "5081f8513af57e61696de4f4f04b0e707ffb503e"
+      },
+      "summary": "从 Flash Attention for SAIL、DeepGEMM for SAIL 及对应上游实现中提取两代真武 PPU 的实际执行模型。分析表明 M890（ppu0015/tc02）以 39 个 CU、FP8/MXFP4 Tensor Cell、增强 AIU、NoTsm epilogue 和大 tile 为主；810E（ppu001/tc01）的参考配置暴露 64 个通用 CU，并另行上报 Tensor CU 数（参考值 20），官方库据此维护独立 Tensor/SIMT 预算，并更侧重 INT8、INT8×INT4、GEMV 与 TSM epilogue。",
+      "key_points": [
+        "两款芯片都以 32 线程 warp、SIMT 调度和 Tensor Cell 为核心；Tensor 原子固定为 16×16 输出面，K 随 dtype 从 16 增至 32 或 64。",
+        "DeepGEMM 将每 CU 建模为 8 个 WE，并把 ACC、A/B 双缓冲、scale fragment 和地址寄存器全部纳入 WE/VREG occupancy。",
+        "AIU 负责 global→TSM 批量搬运，TSM 提供硬件 swizzle 和 fragment load；这不是 NVIDIA TMA 与普通 shared memory 的直接复刻。",
+        "M890 的 tc02 增加 FP8 和 MXFP4，支持更强的 AIU 2D tile、128KiB shared-memory 限流控制和 VREG 直写全局内存。",
+        "810E 的 tc01 以 FP16/BF16/TF32/F32/INT8 为主，代码覆盖 A8W4、INT8 indexer、GEMV 和 SIMT split-K，默认 GEMM 经 TSM epilogue。",
+        "810E 参考配置的自动预算为 20 Tensor / 64 SIMT；设置 `1–20` 时 Tensor 跟随设置值、SIMT 为 `44 + 设置值`，设置 `21–64` 时 Tensor 封顶 20、SIMT 跟随设置值。调低 1–20 档会同时缩小两类预算，不是把 Tensor 资源转给 SIMT。"
+      ],
+      "use_cases": [
+        "判断某项 kernel、指令或 epilogue 设计适用于 M890 还是 810E。",
+        "为双架构 Harness 生成正确的编译条件、tile 策略和资源预算。",
+        "在 810E 上分别查询通用 CU 与 Tensor CU 属性，并正确解释 DeepGEMM 的 Tensor/SIMT 预算设置。",
+        "区分原版 GPU 的 TMA/GMMA/UMMA/TMEM 语义与真武 AIU/TSM/Tensor Cell 语义。",
+        "定位 FP8、FP4、INT8、A8W4、GEMV 和 indexer 的平台专属路径。",
+        "复核代码分析结论中的 commit、源文件、结构和限制。"
+      ],
+      "tags": [
+        "M890",
+        "810E",
+        "PPU0015",
+        "PPU0010",
+        "tc02",
+        "tc01",
+        "AIU",
+        "TSM",
+        "VREG",
+        "Tensor-Cell",
+        "Tensor-CU",
+        "SIMT-budget",
+        "architecture-comparison"
+      ],
+      "output_sha256": "6e8d31c53b4712cdfd8d1b908bd8a761e447d6607a6bd88e194994fc5859f4e1"
+    }
+  ],
   "sources": [
     {
       "id": "project-48",
